@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+
+.preview-scale {
+  transform-origin: top center;
+}
+
+/* Tablet scale */
+@media (max-width: 1024px) {
+  .preview-scale {
+    transform: scale(0.9);
+  }
+}
+
+/* Mobile large */
+@media (max-width: 768px) {
+  .preview-scale {
+    transform: scale(0.8);
+  }
+}
+
+/* Mobile medium */
+@media (max-width: 640px) {
+  .preview-scale {
+    transform: scale(0.7);
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .preview-scale {
+    transform: scale(0.6);
+  }
+}
+
+/* Ultra small */
+@media (max-width: 360px) {
+  .preview-scale {
+    transform: scale(0.55);
+  }
+}
