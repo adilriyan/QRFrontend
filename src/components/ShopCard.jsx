@@ -59,7 +59,7 @@ export default function ShopCard({ shop, onRefresh }) {
           <img
             src={
               shop.logo
-                ? `${backend}${shop.logo}`
+                ? shop.logo
                 : "https://via.placeholder.com/150?text=No+Logo"
             }
             alt={shop.name}

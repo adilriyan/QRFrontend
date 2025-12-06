@@ -97,7 +97,7 @@ export default function QrPages() {
               coupon={{
                 ...coupon,
                 qrImagePath:
-                  coupon.qrImagePath ? backend + coupon.qrImagePath : null,
+                  coupon.qrImagePath ? coupon.qrImagePath : null,
               }}
               onClick={() => navigate(`/viewCoupon/${coupon._id}`)}
             />

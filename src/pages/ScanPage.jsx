@@ -62,6 +62,8 @@ export default function ScanPage() {
         Invalid QR
       </div>
     );
+    console.log(data);
+    
 
   return (
     <div className="flex flex-col justify-center items-center min-h-[80vh] px-4 sm:px-6 md:px-8 lg:px-0 gap-6 sm:gap-8 md:gap-10">

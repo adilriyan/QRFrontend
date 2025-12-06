@@ -80,41 +80,16 @@ export default function ViewCoupon() {
   };
 
 const downloadQR = () => {
-  const token = localStorage.getItem("token");
-  const url = backendBase + `/api/coupons/download-qr/${template._id}`;
-
-  fetch(url, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      return res.blob();
-    })
-    .then((blob) => {
-      // Create a temporary URL for the blob
-      const fileURL = URL.createObjectURL(blob);
-
-      // Create a temporary <a> element to trigger the download
-      const link = document.createElement('a');
-      link.href = fileURL;
-      link.download = `${template.templateCode || 'qr-code'}.png`; // Dynamic filename based on template code
-      document.body.appendChild(link); // Append to DOM for compatibility
-      link.click(); // Trigger the download
-      document.body.removeChild(link); // Clean up
-
-      // Revoke the object URL to free memory
-      URL.revokeObjectURL(fileURL);
-    })
-    .catch((error) => {
-      console.error('Download failed:', error);
-      // Optionally, show a user-friendly error message, e.g., alert('Failed to download QR code.');
-    });
+  const imageUrl = template.qrImagePath; // Cloudinary URL
+  
+  const link = document.createElement("a");
+  link.href = imageUrl;
+  link.download = `${template.templateCode}.png`; 
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
+
 
 
 
@@ -144,6 +119,7 @@ const downloadQR = () => {
     .catch(() => alert("Something went wrong"));
 };
 
+console.log(template);
 
 
   return (
@@ -175,7 +151,7 @@ const downloadQR = () => {
           {template.qrImagePath ? (
             <>
               <img
-                src={backendBase + template.qrImagePath}
+                src={template.qrImagePath}
                 alt="QR"
                 className="w-48 border-2 border-gray-200 p-4 rounded-xl bg-gray-50 shadow-md"
               />
@@ -183,7 +159,7 @@ const downloadQR = () => {
               {/* DOWNLOAD QR */}
               <button
                 className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-xl shadow hover:bg-blue-700"
-                onClick={downloadQR}
+                onClick={() => window.open(template.qrImagePath)}
               >
                 Download QR (PNG)
               </button>
@@ -211,15 +187,15 @@ const downloadQR = () => {
           </button>
         </div>
 
-        {/* DOWNLOAD PDF */}
-        <div className="mt-8">
+        {/* DOWNLOAD PDF  commentd fo0r now this is server side soring and creation some problem occuerd so i will leave here come later*/}
+        {/* <div className="mt-8">
           <button
             className="bg-teal-600 text-white px-6 py-3 rounded-xl shadow hover:bg-teal-700"
             onClick={downloadPDF}
           >
             Download Coupon (PDF)
           </button>
-        </div>
+        </div> */}
 
         {/* ACTION BUTTONS */}
         <div className="mt-8 flex space-x-4">

@@ -46,12 +46,12 @@ export default function CouponPreview({
   }, []);
 
   const badge = badgeStyles[badgeStyle] || badgeStyles.Default;
-  const cleanLogo = shop?.logo?.replace(/^\/+/, "");
+  const cleanLogo = shop?.logo
   const shopLogo = cleanLogo
-    ? `${backend}/${cleanLogo}`
+    ? cleanLogo
     : "https://via.placeholder.com/150";
 
-  const qrURL = qrPath ? `${backend}${qrPath}` : null;
+  const qrURL = qrPath ? qrPath: null;
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border mx-auto w-full max-w-[900px] overflow-hidden">
