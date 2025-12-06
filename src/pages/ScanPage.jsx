@@ -21,7 +21,7 @@ export default function ScanPage() {
   }, []);
 
   useEffect(() => {
-    API.get(`${backend}/coupons/scan/${templateCode}`)
+    API.get(`/coupons/scan/${templateCode}`)
       .then((res) => {
         setData(res.data);
         setStatus("ready");
