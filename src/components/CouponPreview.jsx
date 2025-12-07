@@ -27,6 +27,16 @@ const badgeStyles = {
   },
 };
 
+// ⚠ Add your Cloudinary sticker URLs here
+const badgeStickers = {
+  HolidaySpecial: "https://your-cloudinary-url/holiday.png",
+  MegaSale: "https://your-cloudinary-url/mega.png",
+  LimitedOffer: "https://your-cloudinary-url/limited.png",
+  FlashDeal: "https://your-cloudinary-url/flash.png",
+  WinterFest: "https://your-cloudinary-url/winter.png",
+  Default: "https://your-cloudinary-url/default.png",
+};
+
 export default function CouponPreview({
   shop = {},
   title,
@@ -46,118 +56,111 @@ export default function CouponPreview({
   }, []);
 
   const badge = badgeStyles[badgeStyle] || badgeStyles.Default;
+  const sticker = badgeStickers[badgeStyle] || badgeStickers.Default;
+
   const shopLogo = shop?.logo || "https://via.placeholder.com/150";
   const qrURL = qrPath || null;
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border mx-auto w-full max-w-[780px] overflow-hidden">
+    <div className="bg-white rounded-3xl shadow-xl border mx-auto w-full max-w-[850px] overflow-hidden">
 
       {/* BODY */}
-      <div className="p-6 sm:p-8">
+      <div className="p-8">
 
-        {/* HEADER - Shop + Logo */}
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
-          
+        {/* HEADER - FIXED LAYOUT */}
+        <div className="flex justify-between items-start">
+
           {/* SHOP INFO */}
-          <div className="flex-1 min-w-0">
-            <h1 className="text-3xl sm:text-4xl font-bold leading-tight break-words">
-              {shop?.name || "SHOP NAME"}
+          <div className="max-w-[60%]">
+            <h1 className="text-4xl font-bold leading-tight">
+              {shop?.name}
             </h1>
 
-            <p className="uppercase tracking-wide text-gray-600 text-sm mt-2">
-              {shop?.category || ""}
+            <p className="uppercase tracking-wide text-gray-600 text-sm mt-1">
+              {shop?.category}
             </p>
 
             {shop?.address && (
-              <p className="flex items-center gap-2 text-gray-600 text-sm mt-3 break-all">
+              <p className="flex items-center gap-2 text-gray-700 mt-4 text-sm">
                 📍 {shop.address}
               </p>
             )}
           </div>
 
-          {/* LOGO */}
+          {/* POSTER IMAGE */}
           <img
             src={shopLogo}
-            className="w-28 h-32 sm:w-32 sm:h-36 object-cover rounded-lg border shadow shrink-0"
+            className="w-32 h-40 object-cover rounded-lg border shadow"
             alt="logo"
           />
         </div>
 
         {/* SUBTEXT */}
-        <p className="text-center mt-6 uppercase text-gray-700 text-sm">
+        <p className="text-center mt-10 uppercase text-gray-700 text-sm tracking-wide">
           Scan your QR at shop
         </p>
 
-        {/* MID GRID */}
-        <div className="mt-8 grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+        {/* TITLE + DESCRIPTION */}
+        <div className="text-center mt-8">
+          <h2 className="text-2xl font-bold">{title}</h2>
 
-          {/* VALIDITY */}
-          <div className="sm:col-span-5 text-center sm:text-left">
-            <p className="uppercase text-sm font-bold">Valid For</p>
+          <p className="text-gray-600 mt-1 text-sm break-words px-3">
+            {description}
+          </p>
+        </div>
 
-            <div className="flex items-baseline justify-center sm:justify-start gap-2 mt-2">
-              <p className="text-5xl sm:text-6xl font-extrabold">
-                {validDays || "--"}
-              </p>
-              <p className="text-lg text-gray-700 mt-1">days</p>
-            </div>
+        {/* FIXED 3-COLUMN SECTION (EXACT DESIGN MATCH) */}
+        <div className="mt-12 grid grid-cols-3 items-center">
+
+          {/* LEFT - VALIDITY */}
+          <div className="pl-6">
+            <p className="font-bold uppercase text-sm">VALID FOR</p>
+            <p className="text-[80px] leading-none font-extrabold mt-2">
+              {validDays}
+            </p>
+            <p className="text-lg -mt-2">days</p>
+
+            <p className="mt-10 uppercase font-bold text-sm">Your Code</p>
+            <p className="font-mono text-xl mt-1">{userCode}</p>
           </div>
 
-          {/* BADGE */}
-          <div className="sm:col-span-4 flex justify-center">
-            <div
-              className={`px-5 py-2 rounded-full border shadow-sm text-sm font-bold ${badge.bg}`}
-            >
-              {badge.label}
-            </div>
+          {/* CENTER - STICKER BADGE */}
+          <div className="flex justify-center">
+            <img
+              src={sticker}
+              className="w-36 h-36 object-contain drop-shadow-lg"
+              alt="badge"
+            />
           </div>
 
-          {/* QR - FIXED SIZE */}
-          <div className="sm:col-span-3 flex justify-center">
+          {/* RIGHT - QR */}
+          <div className="flex justify-center pr-4">
             {qrURL ? (
               <img
                 src={qrURL}
-                className="w-28 h-28 sm:w-32 sm:h-32 rounded-md border shadow shrink-0 min-w-[7rem]"
-                alt="QR"
+                className="w-32 h-32 rounded-md border shadow-md"
               />
             ) : (
-              <div className="w-28 h-28 sm:w-32 sm:h-32 bg-gray-200 flex items-center justify-center rounded-md border shrink-0">
-                <p className="text-xs text-gray-500">QR Preview</p>
+              <div className="w-32 h-32 bg-gray-200 rounded-md border flex items-center justify-center">
+                <p className="text-xs text-gray-600">QR Preview</p>
               </div>
             )}
           </div>
 
         </div>
 
-        {/* DESCRIPTION */}
-        <div className="mt-10">
-          <h2 className="text-2xl sm:text-3xl font-bold">
-            {title || "Coupon Title"}
-          </h2>
-
-          <p className="text-gray-600 mt-2 text-sm sm:text-base break-words">
-            {description || "Coupon description…"}
-          </p>
-
-          <p className="mt-6 uppercase text-sm font-bold">Your Code</p>
-
-          <p className="font-mono text-xl sm:text-2xl mt-1 break-all">
-            {userCode || "XXXXX-XXXX"}
-          </p>
-        </div>
-
         {/* EXPIRY */}
-        <p className="mt-6 text-sm text-gray-600">
-          <span className="font-medium">Valid Until:</span> {expiryDate}
+        <p className="text-center mt-10 text-gray-600 text-sm">
+          <span className="font-semibold">Valid Until:</span> {expiryDate}
         </p>
       </div>
 
       {/* FOOTER */}
-      <div className="w-full bg-gray-900 text-white py-4 px-6 flex items-center justify-between">
+      <div className="bg-gray-900 text-white py-5 px-8 flex justify-between items-center">
         <p className="text-lg font-semibold">{footerText}</p>
 
-        <div className="text-right leading-tight">
-          <p className="text-sm opacity-80">RORONOA</p>
+        <div className="text-right opacity-80 leading-none">
+          <p className="text-sm">RORONOA</p>
           <p className="text-xs opacity-60">ADmarketing</p>
         </div>
       </div>
