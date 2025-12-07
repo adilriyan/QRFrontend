@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { API } from "../api/api";
 import html2canvas from "html2canvas";
@@ -20,28 +20,40 @@ export default function ScanPage() {
     );
   }, []);
 
+  /* -----------------------------------------
+      FETCH COUPON DATA
+  ------------------------------------------ */
   useEffect(() => {
     API.get(`/coupons/scan/${templateCode}`)
       .then((res) => {
         setData(res.data);
         setStatus("ready");
       })
-      .catch(() => setStatus("error"));
+      .catch(() => {
+        setStatus("error");
+      });
   }, [templateCode]);
 
+  /* -----------------------------------------
+      PDF DOWNLOAD (only the coupon)
+  ------------------------------------------ */
   const downloadClientPDF = async () => {
     if (!pdfRef.current) return;
 
-    const canvas = await html2canvas(pdfRef.current, {
-      scale: 2,
+    const node = pdfRef.current;
+
+    const canvas = await html2canvas(node, {
+      scale: 3,
+      backgroundColor: "#ffffff",
       useCORS: true,
-      windowWidth: 1200
+      width: node.scrollWidth,
+      height: node.scrollHeight,
     });
 
     const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "mm", "a4");
 
-    const pageWidth = 210;
+    const pageWidth = pdf.internal.pageSize.getWidth();
     const imgProps = pdf.getImageProperties(imgData);
     const imgHeight = (imgProps.height * pageWidth) / imgProps.width;
 
@@ -49,50 +61,63 @@ export default function ScanPage() {
     pdf.save(`Coupon-${data.userCouponCode}.pdf`);
   };
 
-  if (status === "loading")
+  /* -----------------------------------------
+      UI STATES
+  ------------------------------------------ */
+  if (status === "loading") {
     return (
-      <div className="min-h-[60vh] flex justify-center items-center text-sm sm:text-base">
-        Loading…
+      <div className="min-h-[70vh] flex justify-center items-center">
+        <p className="text-gray-600 text-base">Processing QR…</p>
       </div>
     );
+  }
 
-  if (status === "error")
+  if (status === "error") {
     return (
-      <div className="min-h-[60vh] flex justify-center items-center text-red-500 text-sm sm:text-base">
-        Invalid QR
+      <div className="min-h-[70vh] flex justify-center items-center">
+        <p className="text-red-500 text-base">Invalid or expired QR Code</p>
       </div>
     );
-    console.log(data);
-    
+  }
 
+  /* -----------------------------------------
+      MAIN RENDER
+  ------------------------------------------ */
   return (
-    <div className="flex flex-col justify-center items-center min-h-[80vh] px-4 sm:px-6 md:px-8 lg:px-0 gap-6 sm:gap-8 md:gap-10">
-      {/* Coupon Preview */}
-      <div ref={pdfRef} className="w-full flex justify-center">
-        <CouponPreview
-          shop={data.template.shopId}
-          title={data.template.title}
-          description={data.template.description}
-          expiryDate={data.template.expiryDate}
-          validDays={data.template.validDays}
-          badgeStyle={data.template.badgeStyle}
-          footerText={data.template.footerText}
-          userCode={data.userCouponCode}
-          qrPath={data.qrPath}
-        />
+    <div className="flex flex-col items-center min-h-[80vh] px-4 sm:px-6 py-10 gap-8">
+
+      {/* COUPON WRAPPER (for PDF capture) */}
+      <div
+        ref={pdfRef}
+        className="w-full flex justify-center bg-white"
+      >
+        <div className="inline-block">
+          <CouponPreview
+            shop={data.template.shopId}
+            title={data.template.title}
+            description={data.template.description}
+            expiryDate={data.template.expiryDate}
+            validDays={data.template.validDays}
+            badgeStyle={data.template.badgeStyle}
+            footerText={data.template.footerText}
+            userCode={data.userCouponCode}
+            qrPath={data.qrPath}
+          />
+        </div>
       </div>
 
-      {/* Download Button */}
+      {/* ACTION BUTTON */}
       <button
         onClick={downloadClientPDF}
         className="
-          px-4 sm:px-6 py-2 sm:py-3
-          bg-teal-500 text-white rounded-xl shadow font-semibold
-          w-full max-w-xs sm:max-w-sm md:max-w-md
-          text-sm sm:text-base
+          px-6 py-3
+          bg-teal-600 text-white rounded-xl shadow-md
+          font-semibold text-base
+          w-full max-w-xs
+          hover:bg-teal-700 transition
         "
       >
-        Download PDF
+        Download Coupon (PDF)
       </button>
     </div>
   );
