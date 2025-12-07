@@ -35,31 +35,48 @@ export default function ScanPage() {
   }, [templateCode]);
 
   /* -----------------------------------------
-      PDF DOWNLOAD (only the coupon)
+      PDF DOWNLOAD This fuction has some madman problem  since this my bignig time  most off i fixed with gpt 
+      even some time any thing this has some problem 
   ------------------------------------------ */
   const downloadClientPDF = async () => {
-    if (!pdfRef.current) return;
+  if (!pdfRef.current) return;
 
-    const node = pdfRef.current;
+  const original = pdfRef.current;
 
-    const canvas = await html2canvas(node, {
-      scale: 3,
-      backgroundColor: "#ffffff",
-      useCORS: true,
-      width: node.scrollWidth,
-      height: node.scrollHeight,
-    });
+  // 1. Clone the coupon node
+  const clone = original.cloneNode(true);
+  clone.style.position = "absolute";
+  clone.style.top = "-9999px";
+  clone.style.left = "0";
+  clone.style.width = original.offsetWidth + "px";
+  clone.style.background = "#ffffff";
 
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF("p", "mm", "a4");
+  document.body.appendChild(clone);
 
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const imgProps = pdf.getImageProperties(imgData);
-    const imgHeight = (imgProps.height * pageWidth) / imgProps.width;
+  // 2. Wait for clone images to load
+  await new Promise((resolve) => setTimeout(resolve, 200));
 
-    pdf.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
-    pdf.save(`Coupon-${data.userCouponCode}.pdf`);
-  };
+  // 3. Capture CLONE – avoids scroll/overflow clipping
+  const canvas = await html2canvas(clone, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: "#ffffff",
+  });
+
+  document.body.removeChild(clone); // clean up
+
+  // 4. Build PDF
+  const imgData = canvas.toDataURL("image/png");
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const imgProps = pdf.getImageProperties(imgData);
+  const imgHeight = (imgProps.height * pageWidth) / imgProps.width;
+
+  pdf.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
+  pdf.save(`Coupon-${data.userCouponCode}.pdf`);
+};
+
 
   /* -----------------------------------------
       UI STATES
