@@ -27,7 +27,7 @@ const badgeStyles = {
   },
 };
 
-// ⚠ Add your Cloudinary sticker URLs here
+// Cloudinary sticker URLs (replace them with your real ones)
 const badgeStickers = {
   HolidaySpecial: "https://your-cloudinary-url/holiday.png",
   MegaSale: "https://your-cloudinary-url/mega.png",
@@ -67,7 +67,7 @@ export default function CouponPreview({
       {/* BODY */}
       <div className="p-8">
 
-        {/* HEADER - FIXED LAYOUT */}
+        {/* HEADER SECTION */}
         <div className="flex justify-between items-start">
 
           {/* SHOP INFO */}
@@ -90,8 +90,8 @@ export default function CouponPreview({
           {/* POSTER IMAGE */}
           <img
             src={shopLogo}
-            className="w-32 h-40 object-cover rounded-lg border shadow"
-            alt="logo"
+            className="w-32 h-40 md:w-40 md:h-52 object-cover rounded-lg border shadow"
+            alt="poster"
           />
         </div>
 
@@ -109,11 +109,25 @@ export default function CouponPreview({
           </p>
         </div>
 
-        {/* FIXED 3-COLUMN SECTION (EXACT DESIGN MATCH) */}
-        <div className="mt-12 grid grid-cols-3 items-center">
+        {/* 
+          MIDDLE 3-COLUMN SECTION
+          ➜ FIXED ON DESKTOP
+          ➜ HORIZONTAL SCROLL ON MOBILE
+        */}
+        <div
+          className="
+            mt-12
+            flex 
+            sm:grid sm:grid-cols-3
+            overflow-x-auto sm:overflow-visible
+            gap-8 sm:gap-4
+            items-center
+            scrollbar-hide
+          "
+        >
 
           {/* LEFT - VALIDITY */}
-          <div className="pl-6">
+          <div className="min-w-[200px] sm:min-w-0 pl-6">
             <p className="font-bold uppercase text-sm">VALID FOR</p>
             <p className="text-[80px] leading-none font-extrabold mt-2">
               {validDays}
@@ -124,8 +138,8 @@ export default function CouponPreview({
             <p className="font-mono text-xl mt-1">{userCode}</p>
           </div>
 
-          {/* CENTER - STICKER BADGE */}
-          <div className="flex justify-center">
+          {/* CENTER - STICKER */}
+          <div className="flex justify-center min-w-[200px] sm:min-w-0">
             <img
               src={sticker}
               className="w-36 h-36 object-contain drop-shadow-lg"
@@ -134,11 +148,12 @@ export default function CouponPreview({
           </div>
 
           {/* RIGHT - QR */}
-          <div className="flex justify-center pr-4">
+          <div className="flex justify-center min-w-[200px] sm:min-w-0 pr-4">
             {qrURL ? (
               <img
                 src={qrURL}
                 className="w-32 h-32 rounded-md border shadow-md"
+                alt="qr"
               />
             ) : (
               <div className="w-32 h-32 bg-gray-200 rounded-md border flex items-center justify-center">
@@ -146,7 +161,6 @@ export default function CouponPreview({
               </div>
             )}
           </div>
-
         </div>
 
         {/* EXPIRY */}
