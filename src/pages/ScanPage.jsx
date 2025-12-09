@@ -56,7 +56,7 @@ export default function ScanPage() {
   // 2. Wait for clone images to load
   await new Promise((resolve) => setTimeout(resolve, 200));
 
-  // 3. Capture CLONE – avoids scroll/overflow clipping
+  // 3. Capture CLONE – avoids scroll
   const canvas = await html2canvas(clone, {
     scale: 3,
     useCORS: true,

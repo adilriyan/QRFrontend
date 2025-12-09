@@ -191,6 +191,8 @@ export default function AddCoupon() {
                 <option value="LimitedOffer">Limited Offer</option>
                 <option value="FlashDeal">Flash Deal</option>
                 <option value="WinterFest">Winter Fest</option>
+                <option value="Onam">Onam</option>
+                <option value="NewYear">New Year</option>
               </select>
             </div>
 

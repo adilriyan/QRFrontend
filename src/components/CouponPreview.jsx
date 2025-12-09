@@ -29,12 +29,14 @@ const badgeStyles = {
 
 // ⚠ Add your Cloudinary sticker URLs here
 const badgeStickers = {
-  HolidaySpecial: "https://your-cloudinary-url/holiday.png",
-  MegaSale: "https://your-cloudinary-url/mega.png",
-  LimitedOffer: "https://your-cloudinary-url/limited.png",
-  FlashDeal: "https://your-cloudinary-url/flash.png",
-  WinterFest: "https://your-cloudinary-url/winter.png",
-  Default: "https://your-cloudinary-url/default.png",
+  HolidaySpecial: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765293688/Untitled_Project_-_3_dxcpqe.jpg",
+  MegaSale: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765293685/Untitled_Project_-_illustrationImage_ogx1kx.jpg",
+  LimitedOffer:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765293683/Untitled_Project_-_illustrationImage_2_uz7a6x.jpg",
+  FlashDeal: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765293683/Untitled_Project_-_illustrationImage_2_uz7a6x.jpg",
+  WinterFest: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765293685/Untitled_Project_-_illustrationImage_3_qdopuu.jpg",
+  NewYear:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765293685/Untitled_Project_-_1_cp0te8.jpg",
+  Onam:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765293685/Untitled_Project_-_1_cp0te8.jpg",
+  Default:"",
 };
 
 export default function CouponPreview({
