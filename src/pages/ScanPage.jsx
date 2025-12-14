@@ -119,6 +119,7 @@ export default function ScanPage() {
             footerText={data.template.footerText}
             userCode={data.userCouponCode}
             qrPath={data.qrPath}
+            theme={data.theme}
           />
         </div>
       </div>
