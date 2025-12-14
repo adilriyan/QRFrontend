@@ -50,6 +50,7 @@ export default function CouponPreview({
   footerText = "#SeeYouThere",
   userCode,
   qrPath,
+  theme
 }) {
   const backend = useMemo(() => {
     return (import.meta.env.VITE_API_BASE || "http://localhost:5000").replace(
@@ -65,17 +66,22 @@ export default function CouponPreview({
   const qrURL = qrPath || null;
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl border mx-auto w-full max-w-[850px] overflow-hidden">
+    <div  className="rounded-3xl shadow-xl border mx-auto w-full max-w-[850px] overflow-hidden"
+  style={{
+    backgroundColor: theme?.primary || "#ffffff",
+    color: theme?.text || "#000000",
+  }}>
 
       {/* BODY */}
-      <div className="p-8">
+      <div className="p-8" style={{ color: theme?.text || "#111" }}>
+
 
         {/* HEADER - FIXED LAYOUT */}
         <div className="flex justify-between items-start">
 
           {/* SHOP INFO */}
           <div className="max-w-[60%]">
-            <h1 className="text-4xl font-bold leading-tight">
+           <h1 className="text-4xl font-bold leading-tight" style={{ color: textColor }}>
               {shop?.name}
             </h1>
 
@@ -132,7 +138,7 @@ export default function CouponPreview({
             <img
               src={sticker}
               className="w-36 h-36 object-contain drop-shadow-lg"
-              alt="badge"
+              alt=""
             />
           </div>
 
@@ -159,7 +165,14 @@ export default function CouponPreview({
       </div>
 
       {/* FOOTER */}
-      <div className="bg-gray-900 text-white py-5 px-8 flex justify-between items-center">
+    <div
+  className="py-5 px-8 flex justify-between items-center"
+  style={{
+    backgroundColor: theme?.footer || "#111827",
+    color: theme?.text || "#ffffff",
+  }}
+>
+
         <p className="text-lg font-semibold">{footerText}</p>
 
         <div className="text-right opacity-80 leading-none">

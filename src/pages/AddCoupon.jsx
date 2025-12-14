@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { API } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import CouponPreview from "../components/CouponPreview";
+import { COUPON_THEMES } from "../constants/couponThemes";
 
 export default function AddCoupon() {
   const [title, setTitle] = useState("");
@@ -9,13 +10,17 @@ export default function AddCoupon() {
   const [expiryDate, setExpiryDate] = useState("");
   const [validDays, setValidDays] = useState("");
   const [badgeStyle, setBadgeStyle] = useState("");
- const [footerText,setFooterText]=useState("")
+  const [footerText, setFooterText] = useState("");
   const [shopId, setShopId] = useState("");
   const [selectedShop, setSelectedShop] = useState(null);
   const [shops, setShops] = useState([]);
-
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [theme, setTheme] = useState({
+    primary: "#0f766e",
+    footer: "#134e4a",
+    text: "#ffffff",
+  });
 
   const navigate = useNavigate();
 
@@ -59,6 +64,7 @@ export default function AddCoupon() {
         badgeStyle,
         footerText,
         shopId,
+        theme,
       });
 
       navigate("/qrpages");
@@ -175,6 +181,39 @@ export default function AddCoupon() {
               />
             </div>
 
+            {/* them section */}
+            <div>
+              <label className="block text-gray-600 font-medium mb-3">
+                Choose Coupon Theme
+              </label>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {COUPON_THEMES.map((t) => (
+                  <button
+                    type="button"
+                    key={t.id}
+                    onClick={() => setTheme(t)}
+                    className={`rounded-xl border-2 transition-all overflow-hidden ${
+                      theme.id === t.id
+                        ? "border-teal-500 scale-105"
+                        : "border-gray-200 hover:scale-105"
+                    }`}
+                  >
+                    <div
+                      className="h-16 flex items-center justify-center text-sm font-semibold"
+                      style={{ backgroundColor: t.primary, color: t.text }}
+                    >
+                      {t.name}
+                    </div>
+                    <div
+                      className="h-6"
+                      style={{ backgroundColor: t.footer }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Badge */}
             <div>
               <label className="block text-gray-600 font-medium mb-2">
@@ -218,6 +257,7 @@ export default function AddCoupon() {
             validDays={validDays}
             badgeStyle={badgeStyle}
             footerText={footerText}
+            theme={theme}
           />
         </div>
       </div>
