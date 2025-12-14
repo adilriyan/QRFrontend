@@ -16,13 +16,9 @@ export default function AddCoupon() {
   const [shops, setShops] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [theme, setTheme] = useState({
-    primary: "#0f766e",
-    footer: "#134e4a",
-    text: "#ffffff",
-  });
-
+  const [theme, setTheme] = useState(COUPON_THEMES[0]);
   const navigate = useNavigate();
+
 
   useEffect(() => {
     API.get("/shops/all")

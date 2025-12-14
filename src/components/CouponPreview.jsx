@@ -51,7 +51,20 @@ export default function CouponPreview({
   userCode,
   qrPath,
   theme
-}) {
+})
+
+
+
+{
+const DEFAULT_THEME = {
+  primary: "#ffffff",
+  footer: "#111827",
+  text: "#0f172a",
+};
+
+const safeTheme = theme || DEFAULT_THEME;
+
+  
   const backend = useMemo(() => {
     return (import.meta.env.VITE_API_BASE || "http://localhost:5000").replace(
       "/api",
@@ -68,12 +81,12 @@ export default function CouponPreview({
   return (
     <div  className="rounded-3xl shadow-xl border mx-auto w-full max-w-[850px] overflow-hidden"
   style={{
-    backgroundColor: theme?.primary || "#ffffff",
-    color: theme?.text || "#000000",
+    backgroundColor: safeTheme?.primary || "#ffffff",
+    color: safeTheme?.text || "#000000",
   }}>
 
       {/* BODY */}
-      <div className="p-8" style={{ color: theme?.text || "#111" }}>
+      <div className="p-8" style={{ color: safeTheme?.text || "#111" }}>
 
 
         {/* HEADER - FIXED LAYOUT */}
@@ -81,16 +94,16 @@ export default function CouponPreview({
 
           {/* SHOP INFO */}
           <div className="max-w-[60%]">
-           <h1 className="text-4xl font-bold leading-tight" style={{ color: theme.text }}>
+           <h1 className="text-4xl font-bold leading-tight" style={{ color: safeTheme.text }}>
               {shop?.name}
             </h1>
 
-            <p className="uppercase tracking-wide text-sm mt-1" style={{ color: theme.text }}>
+            <p className="uppercase tracking-wide text-sm mt-1" style={{ color: safeTheme.text }}>
               {shop?.category}
             </p>
 
             {shop?.address && (
-              <p className="flex items-center gap-2 mt-4 text-sm" style={{ color: theme.text }}>
+              <p className="flex items-center gap-2 mt-4 text-sm" style={{ color: safeTheme.text }}>
                 📍 {shop.address}
               </p>
             )}
@@ -105,7 +118,7 @@ export default function CouponPreview({
         </div>
 
         {/* SUBTEXT */}
-        <p className="text-center mt-10 uppercase text-sm tracking-wide" style={{ color: theme.text }}>
+        <p className="text-center mt-10 uppercase text-sm tracking-wide" style={{ color: safeTheme.text }}>
           Scan your QR at shop
         </p>
 
@@ -113,7 +126,7 @@ export default function CouponPreview({
         <div className="text-center mt-8">
           <h2 className="text-2xl font-bold">{title}</h2>
 
-          <p className="mt-1 text-sm break-words px-3" style={{ color: theme.text }}>
+          <p className="mt-1 text-sm break-words px-3" style={{ color: safeTheme.text }}>
             {description}
           </p>
         </div>
@@ -151,7 +164,7 @@ export default function CouponPreview({
               />
             ) : (
               <div className="w-32 h-32 bg-gray-200 rounded-md border flex items-center justify-center">
-                <p className="text-xs" style={{ color: theme.text }}>QR Preview</p>
+                <p className="text-xs" style={{ color: safeTheme.text }}>QR Preview</p>
               </div>
             )}
           </div>
@@ -159,7 +172,7 @@ export default function CouponPreview({
         </div>
 
         {/* EXPIRY */}
-        <p className="text-center mt-10text-sm" style={{ color: theme.text }}>
+        <p className="text-center mt-10text-sm" style={{ color: safeTheme.text }}>
           <span className="font-semibold">Valid Until:</span> {expiryDate}
         </p>
       </div>
@@ -169,7 +182,7 @@ export default function CouponPreview({
   className="py-5 px-8 flex justify-between items-center"
   style={{
     backgroundColor: theme?.footer || "#111827",
-    color: theme?.text || "#ffffff",
+    color: safeTheme?.text || "#ffffff",
   }}
 >
 
