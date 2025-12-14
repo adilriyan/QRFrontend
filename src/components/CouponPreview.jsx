@@ -81,16 +81,16 @@ export default function CouponPreview({
 
           {/* SHOP INFO */}
           <div className="max-w-[60%]">
-           <h1 className="text-4xl font-bold leading-tight" style={{ color: textColor }}>
+           <h1 className="text-4xl font-bold leading-tight" style={{ color: theme.text }}>
               {shop?.name}
             </h1>
 
-            <p className="uppercase tracking-wide text-gray-600 text-sm mt-1">
+            <p className="uppercase tracking-wide text-sm mt-1" style={{ color: theme.text }}>
               {shop?.category}
             </p>
 
             {shop?.address && (
-              <p className="flex items-center gap-2 text-gray-700 mt-4 text-sm">
+              <p className="flex items-center gap-2 mt-4 text-sm" style={{ color: theme.text }}>
                 📍 {shop.address}
               </p>
             )}
@@ -105,7 +105,7 @@ export default function CouponPreview({
         </div>
 
         {/* SUBTEXT */}
-        <p className="text-center mt-10 uppercase text-gray-700 text-sm tracking-wide">
+        <p className="text-center mt-10 uppercase text-sm tracking-wide" style={{ color: theme.text }}>
           Scan your QR at shop
         </p>
 
@@ -113,7 +113,7 @@ export default function CouponPreview({
         <div className="text-center mt-8">
           <h2 className="text-2xl font-bold">{title}</h2>
 
-          <p className="text-gray-600 mt-1 text-sm break-words px-3">
+          <p className="mt-1 text-sm break-words px-3" style={{ color: theme.text }}>
             {description}
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function CouponPreview({
             <img
               src={sticker}
               className="w-36 h-36 object-contain drop-shadow-lg"
-              alt=""
+              alt=" "
             />
           </div>
 
@@ -151,7 +151,7 @@ export default function CouponPreview({
               />
             ) : (
               <div className="w-32 h-32 bg-gray-200 rounded-md border flex items-center justify-center">
-                <p className="text-xs text-gray-600">QR Preview</p>
+                <p className="text-xs" style={{ color: theme.text }}>QR Preview</p>
               </div>
             )}
           </div>
@@ -159,7 +159,7 @@ export default function CouponPreview({
         </div>
 
         {/* EXPIRY */}
-        <p className="text-center mt-10 text-gray-600 text-sm">
+        <p className="text-center mt-10text-sm" style={{ color: theme.text }}>
           <span className="font-semibold">Valid Until:</span> {expiryDate}
         </p>
       </div>
