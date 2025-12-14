@@ -1,4 +1,5 @@
 export const COUPON_THEMES = [
+  // ===== EXISTING 10 (cleaned) =====
   {
     id: "teal",
     name: "Teal Classic",
@@ -67,6 +68,41 @@ export const COUPON_THEMES = [
     name: "Indigo Pro",
     primary: "#312e81",
     footer: "#1e1b4b",
+    text: "#ffffff",
+  },
+  {
+    id: "cleanWhite",
+    name: "Clean White",
+    primary: "#ffffff",
+    footer: "#0f766e",
+    text: "#0f172a",
+  },
+  {
+    id: "ivoryGold",
+    name: "Ivory Gold",
+    primary: "#fffaf0",
+    footer: "#92400e",
+    text: "#3f2a1a",
+  },
+  {
+    id: "cloudBlue",
+    name: "Cloud Blue",
+    primary: "#f8fafc",
+    footer: "#2563eb",
+    text: "#0f172a",
+  },
+  {
+    id: "carbon",
+    name: "Carbon Black",
+    primary: "#09090b",
+    footer: "#18181b",
+    text: "#fafafa",
+  },
+  {
+    id: "aquaPop",
+    name: "Aqua Pop",
+    primary: "#06b6d4",
+    footer: "#0e7490",
     text: "#ffffff",
   },
 ];
