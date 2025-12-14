@@ -42,23 +42,22 @@ const downloadClientPDF = async () => {
   if (!pdfRef.current || !data) return;
 
   const safeTheme = data?.template?.theme || DEFAULT_THEME;
-
   const original = pdfRef.current;
 
-  // Clone node
+  // Clone
   const clone = original.cloneNode(true);
   clone.style.position = "fixed";
-  clone.style.top = "0";
   clone.style.left = "-9999px";
-  clone.style.width = original.offsetWidth + "px";
+  clone.style.top = "0";
+  clone.style.width = original.scrollWidth + "px";
   clone.style.background = safeTheme.primary;
 
   document.body.appendChild(clone);
 
-  // Wait for images & SVGs
+  // Wait for images
   const images = clone.querySelectorAll("img");
   await Promise.all(
-    Array.from(images).map(
+    [...images].map(
       (img) =>
         new Promise((resolve) => {
           if (img.complete) return resolve();
@@ -67,26 +66,45 @@ const downloadClientPDF = async () => {
     )
   );
 
-  // Capture
+  // Capture full height
   const canvas = await html2canvas(clone, {
     scale: 3,
     useCORS: true,
-    backgroundColor: null, // 👈 DO NOT FORCE WHITE
+    scrollY: 0,
+    windowWidth: clone.scrollWidth,
+    windowHeight: clone.scrollHeight,
+    backgroundColor: null,
   });
 
   document.body.removeChild(clone);
 
-  // Create PDF
   const imgData = canvas.toDataURL("image/png");
   const pdf = new jsPDF("p", "mm", "a4");
 
   const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
   const imgProps = pdf.getImageProperties(imgData);
   const imgHeight = (imgProps.height * pageWidth) / imgProps.width;
 
-  pdf.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
+  let heightLeft = imgHeight;
+  let position = 0;
+
+  // First page
+  pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+  heightLeft -= pageHeight;
+
+  // Additional pages
+  while (heightLeft > 0) {
+    position -= pageHeight;
+    pdf.addPage();
+    pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+    heightLeft -= pageHeight;
+  }
+
   pdf.save(`Coupon-${data.userCouponCode}.pdf`);
 };
+
 
 
 
