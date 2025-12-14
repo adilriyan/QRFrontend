@@ -38,34 +38,45 @@ export default function ScanPage() {
       PDF DOWNLOAD This fuction has some madman problem  since this my bignig time  most off i fixed with gpt 
       even some time any thing this has some problem 
   ------------------------------------------ */
-  const downloadClientPDF = async () => {
-  if (!pdfRef.current) return;
+const downloadClientPDF = async () => {
+  if (!pdfRef.current || !data) return;
+
+  const safeTheme = data?.template?.theme || DEFAULT_THEME;
 
   const original = pdfRef.current;
 
-  // 1. Clone the coupon node
+  // Clone node
   const clone = original.cloneNode(true);
-  clone.style.position = "absolute";
-  clone.style.top = "-9999px";
-  clone.style.left = "0";
+  clone.style.position = "fixed";
+  clone.style.top = "0";
+  clone.style.left = "-9999px";
   clone.style.width = original.offsetWidth + "px";
-  clone.style.background = "#ffffff";
+  clone.style.background = safeTheme.primary;
 
   document.body.appendChild(clone);
 
-  // 2. Wait for clone images to load
-  await new Promise((resolve) => setTimeout(resolve, 200));
+  // Wait for images & SVGs
+  const images = clone.querySelectorAll("img");
+  await Promise.all(
+    Array.from(images).map(
+      (img) =>
+        new Promise((resolve) => {
+          if (img.complete) return resolve();
+          img.onload = img.onerror = resolve;
+        })
+    )
+  );
 
-  // 3. Capture CLONE – avoids scroll
+  // Capture
   const canvas = await html2canvas(clone, {
     scale: 3,
     useCORS: true,
-    backgroundColor: "#ffffff",
+    backgroundColor: null, // 👈 DO NOT FORCE WHITE
   });
 
-  document.body.removeChild(clone); // clean up
+  document.body.removeChild(clone);
 
-  // 4. Build PDF
+  // Create PDF
   const imgData = canvas.toDataURL("image/png");
   const pdf = new jsPDF("p", "mm", "a4");
 
@@ -76,6 +87,7 @@ export default function ScanPage() {
   pdf.addImage(imgData, "PNG", 0, 0, pageWidth, imgHeight);
   pdf.save(`Coupon-${data.userCouponCode}.pdf`);
 };
+
 
 
   /* -----------------------------------------
@@ -104,10 +116,8 @@ export default function ScanPage() {
     <div className="flex flex-col items-center min-h-[80vh] px-4 sm:px-6 py-10 gap-8">
 
       {/* COUPON WRAPPER (for PDF capture) */}
-      <div
-        ref={pdfRef}
-        className="w-full flex justify-center bg-white"
-      >
+     <div ref={pdfRef} className="w-full flex justify-center">
+
         <div className="inline-block">
           <CouponPreview
             shop={data.template.shopId}
@@ -119,7 +129,7 @@ export default function ScanPage() {
             footerText={data.template.footerText}
             userCode={data.userCouponCode}
             qrPath={data.qrPath}
-            theme={data.theme}
+            theme={data.template.theme}
           />
         </div>
       </div>
