@@ -153,7 +153,7 @@ const safeTheme = theme || DEFAULT_THEME;
           <div className="flex justify-center">
             <img
               src={sticker}
-              className="w-36 h-36 object-contain drop-shadow-lg"
+              className="w-30 h-32 object-contain drop-shadow-lg"
               alt=" "
             />
           </div>
