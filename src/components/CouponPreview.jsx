@@ -56,6 +56,9 @@ export default function CouponPreview({
 
 
 {
+
+  console.log(theme);
+  
 const DEFAULT_THEME = {
   primary: "#ffffff",
   footer: "#111827",
