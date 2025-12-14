@@ -36,7 +36,7 @@ const badgeStickers = {
   WinterFest: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0006_uda3m9.jpg",
   NewYear:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470529/IMG-20251210-WA0008_obnjqy.jpg",
   Opening:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0002_l7vrdf.jpg",
-  Onam:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0001_bqkohk.jpg",
+  Onam:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765723731/Onam_zfk1of.svg",
   Default:"",
 };
 
