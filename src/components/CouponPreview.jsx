@@ -184,7 +184,7 @@ const safeTheme = theme || DEFAULT_THEME;
     <div
   className="py-5 px-8 flex justify-between items-center"
   style={{
-    backgroundColor: theme?.footer || "#111827",
+    backgroundColor: safeTheme?.footer || "#111827",
     color: safeTheme?.text || "#ffffff",
   }}
 >
