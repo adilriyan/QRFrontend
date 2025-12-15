@@ -29,14 +29,14 @@ const badgeStyles = {
 
 // ⚠ Add your Cloudinary sticker URLs here
 const badgeStickers = {
-  HolidaySpecial: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470528/IMG-20251210-WA0005_xa4bq4.jpg",
-  MegaSale: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0007_qj2zil.jpg",
-  LimitedOffer:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0003_luqkbk.jpg",
-  FlashDeal: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0004_mfi7tu.jpg",
-  WinterFest: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0006_uda3m9.jpg",
-  NewYear:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470529/IMG-20251210-WA0008_obnjqy.jpg",
-  Opening:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765470527/IMG-20251210-WA0002_l7vrdf.jpg",
-  Onam:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765723731/Onam_zfk1of.svg",
+  HolidaySpecial: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806646/Holiday_brwrsx.svg",
+  MegaSale: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806877/MGsale_ctzadc.svg",
+  LimitedOffer:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806627/Limited_vhvtkm.svg",
+  FlashDeal: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806637/Flash_xqy9q8.svg",
+  WinterFest: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806639/Chrismes_akmc6z.svg",
+  NewYear:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806626/NEWYear_lmht25.svg",
+  Opening:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806637/GR_qfwb4h.svg",
+  Onam:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806633/Onam_mtyy2u.svg",
   Default:"",
 };
 

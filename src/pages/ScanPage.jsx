@@ -35,82 +35,76 @@ export default function ScanPage() {
   }, [templateCode]);
 
   /* -----------------------------------------
-      PDF DOWNLOAD This fuction has some madman problem  since this my bignig time  most off i fixed with gpt 
+      PDF DOWNLOAD This fuction has some madman problem  since this my biggnig time  most off i fixed but
       even some time any thing this has some problem 
   ------------------------------------------ */
 const downloadClientPDF = async () => {
   if (!pdfRef.current || !data) return;
 
-  const safeTheme = data?.template?.theme || DEFAULT_THEME;
   const original = pdfRef.current;
 
-  // Clone
+  // A6 size in mm
+  const PDF_WIDTH_MM = 105;
+  const PDF_HEIGHT_MM = 148;
+
+  // Clone off-screen
   const clone = original.cloneNode(true);
   clone.style.position = "fixed";
-  clone.style.left = "-9999px";
+  clone.style.left = "-10000px";
   clone.style.top = "0";
-  clone.style.width = original.scrollWidth + "px";
-  clone.style.background = safeTheme.primary;
+  clone.style.background = "#ffffff";
+
+  // IMPORTANT: force physical size
+  clone.style.width = "105mm";
+  clone.style.height = "148mm";
 
   document.body.appendChild(clone);
 
-  // Wait for images
+  // Wait for all images (QR, logo)
   const images = clone.querySelectorAll("img");
   await Promise.all(
     [...images].map(
       (img) =>
         new Promise((resolve) => {
-          if (img.complete) return resolve();
-          img.onload = img.onerror = resolve;
+          if (img.complete) resolve();
+          else img.onload = img.onerror = resolve;
         })
     )
   );
 
-  // Capture full height
+  // Capture at print-quality resolution
   const canvas = await html2canvas(clone, {
-    scale: 3,
+    scale: 3, // ~300 DPI
     useCORS: true,
-    scrollY: 0,
-    windowWidth: clone.scrollWidth,
-    windowHeight: clone.scrollHeight,
-    backgroundColor: null,
+    backgroundColor: "#ffffff",
   });
 
   document.body.removeChild(clone);
 
   const imgData = canvas.toDataURL("image/png");
-  const pdf = new jsPDF("p", "mm", "a4");
 
-  const pageWidth = pdf.internal.pageSize.getWidth();
-  const pageHeight = pdf.internal.pageSize.getHeight();
+  // Create exact A6 PDF
+  const pdf = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: [PDF_WIDTH_MM, PDF_HEIGHT_MM],
+  });
 
-  const imgProps = pdf.getImageProperties(imgData);
-  const imgHeight = (imgProps.height * pageWidth) / imgProps.width;
-
-  let heightLeft = imgHeight;
-  let position = 0;
-
-  // First page
-  pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
-  heightLeft -= pageHeight;
-
-  // Additional pages
-  while (heightLeft > 0) {
-    position -= pageHeight;
-    pdf.addPage();
-    pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
-    heightLeft -= pageHeight;
-  }
+  // SINGLE PAGE — NO SCALING
+  pdf.addImage(
+    imgData,
+    "PNG",
+    0,
+    0,
+    PDF_WIDTH_MM,
+    PDF_HEIGHT_MM
+  );
 
   pdf.save(`Coupon-${data.userCouponCode}.pdf`);
 };
 
 
 
-
-  /* -----------------------------------------
-      UI STATES
-  ------------------------------------------ */
   if (status === "loading") {
     return (
       <div className="min-h-[70vh] flex justify-center items-center">
@@ -133,8 +127,16 @@ const downloadClientPDF = async () => {
   return (
     <div className="flex flex-col items-center min-h-[80vh] px-4 sm:px-6 py-10 gap-8">
 
-      {/* COUPON WRAPPER (for PDF capture) */}
-     <div ref={pdfRef} className="w-full flex justify-center">
+      {/*  (for PDF capture) */}
+     <div
+  ref={pdfRef}
+  className="bg-white rounded-xl overflow-hidden"
+  style={{
+    width: "105mm",
+    height: "148mm",
+  }}
+>
+
 
         <div className="inline-block">
           <CouponPreview
