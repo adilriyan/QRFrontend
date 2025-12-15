@@ -43,24 +43,17 @@ const downloadClientPDF = async () => {
 
   const original = pdfRef.current;
 
-  // A6 size in mm
-  const PDF_WIDTH_MM = 105;
-  const PDF_HEIGHT_MM = 148;
-
-  // Clone off-screen
+  // Clone node (off-screen)
   const clone = original.cloneNode(true);
   clone.style.position = "fixed";
   clone.style.left = "-10000px";
   clone.style.top = "0";
   clone.style.background = "#ffffff";
-
-  // IMPORTANT: force physical size
-  clone.style.width = "105mm";
-  clone.style.height = "148mm";
+  clone.style.width = original.offsetWidth + "px";
 
   document.body.appendChild(clone);
 
-  // Wait for all images (QR, logo)
+  // Wait for images (QR, logos)
   const images = clone.querySelectorAll("img");
   await Promise.all(
     [...images].map(
@@ -72,9 +65,9 @@ const downloadClientPDF = async () => {
     )
   );
 
-  // Capture at print-quality resolution
+  // Capture exactly what user sees
   const canvas = await html2canvas(clone, {
-    scale: 3, // ~300 DPI
+    scale: 2,
     useCORS: true,
     backgroundColor: "#ffffff",
   });
@@ -83,25 +76,40 @@ const downloadClientPDF = async () => {
 
   const imgData = canvas.toDataURL("image/png");
 
-  // Create exact A6 PDF
-  const pdf = new jsPDF({
-    orientation: "p",
-    unit: "mm",
-    format: [PDF_WIDTH_MM, PDF_HEIGHT_MM],
-  });
+  // Create A4 PDF
+  const pdf = new jsPDF("p", "mm", "a4");
 
-  // SINGLE PAGE — NO SCALING
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const imgWidthPx = canvas.width;
+  const imgHeightPx = canvas.height;
+
+  // 🔑 Fit INSIDE page (both width & height)
+  const scale = Math.min(
+    pageWidth / imgWidthPx,
+    pageHeight / imgHeightPx
+  );
+
+  const renderWidth = imgWidthPx * scale;
+  const renderHeight = imgHeightPx * scale;
+
+  const x = (pageWidth - renderWidth) / 2;
+  const y = (pageHeight - renderHeight) / 2;
+
+  // SINGLE PAGE ONLY
   pdf.addImage(
     imgData,
     "PNG",
-    0,
-    0,
-    PDF_WIDTH_MM,
-    PDF_HEIGHT_MM
+    x,
+    y,
+    renderWidth,
+    renderHeight
   );
 
   pdf.save(`Coupon-${data.userCouponCode}.pdf`);
 };
+
 
 
 
