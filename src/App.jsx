@@ -1,4 +1,4 @@
-// App.jsx
+// App.jsx - COMPLETE CLEAN FIX
 import { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
@@ -32,46 +32,47 @@ export default function App() {
     location.pathname.startsWith("/coupons/redeem");
 
   return (
-    <div className="min-h-screen bg-slate-950 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
+      
+      {/* SIDEBAR */}
       {!isSpecialPage && (
         <Sidebar open={sidebarOpen} close={closeSidebar} />
       )}
 
-      <div className={!isSpecialPage ? "transition-all duration-300" : ""}>
-        {!isSpecialPage && (
-          <Navbar toggleSidebar={toggleSidebar} />
-        )}
+      {/* NAVBAR */}
+      {!isSpecialPage && (
+        <Navbar toggleSidebar={toggleSidebar} />
+      )}
 
-        <main className={!isSpecialPage ? "pt-20 p-4 md:p-6 lg:p-8" : ""}>
-          <div className="max-w-7xl mx-auto">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/shops" element={<Shops />} />
-              <Route path="/viewCoupon/:id" element={<ViewCoupon />} />
-              <Route path="/scan/:templateCode" element={<ScanPage />} />
-              <Route path="/qrpages" element={<QrPages />} />
-              <Route path="/addShop" element={<AddShop />} />
-              <Route path="/addCoupon" element={<AddCoupon />} />
-              <Route
-                path="/coupons/redeem/:userCouponId"
-                element={<RedeemPage />}
-              />
-              <Route
-                path="/analytics/:shopId"
-                element={<AnalyticsPage />}
-              />
-              <Route path="/invoice-form" element={<InvoiceForm />} />
-              <Route
-                path="/Shope-invoice-List/:shopId"
-                element={<InvoiceList />}
-              />
-              <Route path="/AllInvoices" element={<AllInvoice />} />
-              <Route path="/invoice/:id" element={<InvoiceView />} />
-            </Routes>
-          </div>
-        </main>
-      </div>
+      {/* MAIN CONTENT */}
+      <main className={`
+        min-h-screen
+        transition-all duration-300
+        ${
+          isSpecialPage
+            ? "pt-0 px-4 sm:px-6 lg:px-8"
+            : "pt-[5.5rem] lg:pl-[18rem] px-4 sm:px-6 lg:px-8 xl:px-12 pb-12"
+        }
+      `}>
+        <div className="max-w-7xl mx-auto">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/shops" element={<Shops />} />
+            <Route path="/viewCoupon/:id" element={<ViewCoupon />} />
+            <Route path="/scan/:templateCode" element={<ScanPage />} />
+            <Route path="/qrpages" element={<QrPages />} />
+            <Route path="/addShop" element={<AddShop />} />
+            <Route path="/addCoupon" element={<AddCoupon />} />
+            <Route path="/coupons/redeem/:userCouponId" element={<RedeemPage />} />
+            <Route path="/analytics/:shopId" element={<AnalyticsPage />} />
+            <Route path="/invoice-form" element={<InvoiceForm />} />
+            <Route path="/Shope-invoice-List/:shopId" element={<InvoiceList />} />
+            <Route path="/AllInvoices" element={<AllInvoice />} />
+            <Route path="/invoice/:id" element={<InvoiceView />} />
+          </Routes>
+        </div>
+      </main>
     </div>
   );
 }

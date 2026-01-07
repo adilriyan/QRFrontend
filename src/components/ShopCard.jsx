@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { FaEdit, FaTrash, FaChartBar, FaPhone } from "react-icons/fa";
+import { FaEdit, FaTrash, FaChartBar, FaPhone,FaUser  } from "react-icons/fa";
 import { API } from "../api/api";
 import { useNavigate } from "react-router-dom";
 

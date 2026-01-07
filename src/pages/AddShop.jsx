@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaImage, FaUpload, FaStore, FaUser, FaPhone, FaMapMarkerAlt, FaTag } from "react-icons/fa";
+import { FaImage, FaUpload, FaStore, FaUser, FaPhone, FaMapMarkerAlt, FaTag  } from "react-icons/fa";
 import { API } from "../api/api";
 import { useNavigate } from "react-router-dom";
 

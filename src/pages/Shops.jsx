@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus,FaUser  } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { API } from "../api/api";
 import ShopCard from "../components/ShopCard";
