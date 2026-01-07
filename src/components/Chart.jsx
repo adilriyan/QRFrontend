@@ -9,20 +9,6 @@ import {
 } from "recharts";
 
 export default function Chart({ data }) {
-  // ------------------------------------------------------------------
-  // EXPECTED DATA FOR CHART:
-  // data = [
-  //   { date: "Jan", scans: 45 },
-  //   { date: "Feb", scans: 80 },
-  //   { date: "Mar", scans: 62 },
-  //   ...
-  // ]
-  //
-  // Later you will replace with API analytics:
-  // GET /analytics/scan-stats
-  // ------------------------------------------------------------------
-
-  // Dummy data for UI preview (remove when connecting backend)
   const dummyData = [
     { date: "Jan", scans: 30 },
     { date: "Feb", scans: 50 },
@@ -31,52 +17,73 @@ export default function Chart({ data }) {
     { date: "May", scans: 95 },
   ];
 
-  // Use provided data or fallback
-  const chartData = data || dummyData;
+  const chartData = data.length > 0 ? data : dummyData;
 
   return (
-    <div
-      className="
-        bg-white shadow rounded-xl p-6
-        w-full h-80
-      "
-    >
-      {/* Title */}
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Monthly QR Scan Analytics
-      </h2>
-
-      {/* ------------------------------------------------------------------
-           RESPONSIVE CONTAINER
-           Ensures chart scales on all screen sizes
-         ------------------------------------------------------------------ */}
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
-          {/* Grid lines */}
-          <CartesianGrid strokeDasharray="3 3" />
-
-          {/* Bottom axis */}
-          <XAxis dataKey="date" stroke="#666" />
-
-          {/* Side axis */}
-          <YAxis stroke="#666" />
-
-          {/* Hover tooltip */}
-          <Tooltip
-            contentStyle={{ borderRadius: "10px", padding: "6px" }}
-          />
-
-          {/* Line */}
-          <Line
-            type="monotone"
-            dataKey="scans"
-            stroke="#0d9488"     // (teal-600 color)
-            strokeWidth={3}
-            dot={{ r: 4, strokeWidth: 2 }}
-            activeDot={{ r: 6 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height={400}>
+      <LineChart data={chartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+        <defs>
+          <linearGradient id="scanGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#0d9488" stopOpacity={0.8} />
+            <stop offset="100%" stopColor="#10b981" stopOpacity={0.2} />
+          </linearGradient>
+        </defs>
+        
+        <CartesianGrid 
+          vertical={false}
+          stroke="url(#scanGradient)" 
+          strokeOpacity={0.1}
+          strokeDasharray="4 4"
+        />
+        
+        <XAxis 
+          dataKey="date" 
+          stroke="#94a3b8" 
+          fontSize={12}
+          axisLine={false}
+          tickLine={false}
+          tickMargin={12}
+        />
+        
+        <YAxis 
+          stroke="#94a3b8" 
+          fontSize={12}
+          axisLine={false}
+          tickLine={false}
+          tickMargin={12}
+          width={40}
+        />
+        
+        <Tooltip 
+          contentStyle={{
+            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+            border: '1px solid rgba(71, 85, 105, 0.5)',
+            borderRadius: '12px',
+            padding: '12px',
+          }}
+          labelStyle={{ color: '#f1f5f9', fontWeight: 600 }}
+          itemStyle={{ color: '#e2e8f0' }}
+        />
+        
+        <Line
+          type="monotone"
+          dataKey="scans"
+          stroke="url(#scanGradient)"
+          strokeWidth={4}
+          dot={{
+            stroke: '#0d9488',
+            strokeWidth: 3,
+            r: 6,
+            fill: '#0f172a',
+          }}
+          activeDot={{
+            r: 8,
+            stroke: '#10b981',
+            strokeWidth: 3,
+            fill: '#0f172a',
+          }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }

@@ -10,65 +10,146 @@ import {
 } from "react-icons/fa";
 
 export default function Sidebar({ open, close }) {
+  const baseLink =
+    "flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors duration-200";
   const linkClass =
-    "flex items-center gap-3 p-3 rounded-lg text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition";
+    baseLink +
+    " text-slate-300 hover:text-slate-100 hover:bg-slate-800/70";
   const activeLinkClass =
-    "flex items-center gap-3 p-3 rounded-lg bg-teal-600 text-white transition";
+    baseLink +
+    " bg-teal-500/90 text-white shadow-lg shadow-teal-500/25";
 
   return (
     <>
-      {/* Mobile overlay */}
+      {/* Overlay on all sizes */}
       {open && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
           onClick={close}
         />
       )}
 
-      {/* Sidebar */}
-      <div
+      {/* Drawer-style sidebar for all sizes */}
+      <aside
         className={`
-          fixed top-0 left-0 h-screen w-64 bg-white shadow-lg p-5 z-50
+          fixed top-0 left-0 h-screen w-64
+          bg-slate-900/80 backdrop-blur-xl border-r border-slate-800/80
+          shadow-2xl shadow-slate-900/70
+          px-4 py-6 z-50
           transform transition-transform duration-300 ease-out
           ${open ? "translate-x-0" : "-translate-x-64"}
-          md:translate-x-0
         `}
       >
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-teal-700">QR Market</h1>
-          <button className="text-gray-700 text-2xl md:hidden" onClick={close}>
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-2">
+            <div className="h-9 w-9 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 flex items-center justify-center text-slate-950 font-bold text-xl shadow-lg shadow-teal-500/40">
+              Q
+            </div>
+            <div>
+              <p className="text-sm font-semibold tracking-wide text-slate-100">
+                QR Market
+              </p>
+              <p className="text-[11px] text-slate-400">
+                Merchant Console
+              </p>
+            </div>
+          </div>
+
+          <button
+            className="text-slate-400 hover:text-slate-100 text-2xl"
+            onClick={close}
+          >
             <FaTimes />
           </button>
         </div>
 
-        <nav className="flex flex-col gap-2">
-          <NavLink to="/" className={({ isActive }) => (isActive ? activeLinkClass : linkClass)} onClick={close}>
-            <FaHome /> Dashboard
+        <nav className="space-y-1 text-sm">
+          <p className="px-3 pb-2 text-[11px] uppercase tracking-[0.18em] text-slate-500">
+            Overview
+          </p>
+
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : linkClass
+            }
+            onClick={close}
+          >
+            <FaHome className="text-base" />
+            <span>Dashboard</span>
           </NavLink>
 
-          <NavLink to="/shops" className={({ isActive }) => (isActive ? activeLinkClass : linkClass)} onClick={close}>
-            <FaStore /> Shops
+          <NavLink
+            to="/shops"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : linkClass
+            }
+            onClick={close}
+          >
+            <FaStore className="text-base" />
+            <span>Shops</span>
           </NavLink>
 
-          <NavLink to="/addShop" className={({ isActive }) => (isActive ? activeLinkClass : linkClass)} onClick={close}>
-            <FaPlus /> Add Shop
+          <NavLink
+            to="/addShop"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : linkClass
+            }
+            onClick={close}
+          >
+            <FaPlus className="text-base" />
+            <span>Add Shop</span>
           </NavLink>
 
-          <NavLink to="/qrpages" className={({ isActive }) => (isActive ? activeLinkClass : linkClass)} onClick={close}>
-            <FaQrcode /> Coupons
+          <p className="px-3 pt-4 pb-2 text-[11px] uppercase tracking-[0.18em] text-slate-500">
+            Coupons & Billing
+          </p>
+
+          <NavLink
+            to="/qrpages"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : linkClass
+            }
+            onClick={close}
+          >
+            <FaQrcode className="text-base" />
+            <span>Coupons</span>
           </NavLink>
 
-          <NavLink to="/addCoupon" className={({ isActive }) => (isActive ? activeLinkClass : linkClass)} onClick={close}>
-            <FaFileAlt /> Add Coupon
+          <NavLink
+            to="/addCoupon"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : linkClass
+            }
+            onClick={close}
+          >
+            <FaFileAlt className="text-base" />
+            <span>Add Coupon</span>
           </NavLink>
-           <NavLink to="/invoice-form" className={({ isActive }) => (isActive ? activeLinkClass : linkClass)} onClick={close}>
-            <FaFileAlt /> Bill Form
+
+          <NavLink
+            to="/invoice-form"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : linkClass
+            }
+            onClick={close}
+          >
+            <FaFileAlt className="text-base" />
+            <span>Bill Form</span>
           </NavLink>
-           <NavLink to="/AllInvoices" className={({ isActive }) => (isActive ? activeLinkClass : linkClass)} onClick={close}>
-            <FaFileAlt /> All Invoices
+
+          <NavLink
+            to="/AllInvoices"
+            className={({ isActive }) =>
+              isActive ? activeLinkClass : linkClass
+            }
+            onClick={close}
+          >
+            <FaFileAlt className="text-base" />
+            <span>All Invoices</span>
           </NavLink>
         </nav>
-      </div>
+      </aside>
     </>
   );
 }

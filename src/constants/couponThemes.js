@@ -1,5 +1,5 @@
 export const COUPON_THEMES = [
-  // ===== EXISTING 10 (cleaned) =====
+
   {
     id: "teal",
     name: "Teal Classic",

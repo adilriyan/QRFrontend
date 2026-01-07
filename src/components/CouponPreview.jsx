@@ -2,42 +2,53 @@ import React, { useMemo } from "react";
 
 const badgeStyles = {
   HolidaySpecial: {
-    bg: "bg-teal-100 border-teal-300 text-teal-700",
-    label: "Holiday Specials",
+    bg: "bg-gradient-to-br from-teal-400/90 to-emerald-400/90 border-teal-500/50 backdrop-blur-sm text-teal-900 shadow-lg shadow-teal-500/30",
+    label: "HOLIDAY SPECIALS",
   },
   MegaSale: {
-    bg: "bg-yellow-100 border-yellow-300 text-yellow-700",
-    label: "Mega Sale",
+    bg: "bg-gradient-to-br from-yellow-400/90 to-orange-400/90 border-yellow-500/50 backdrop-blur-sm text-yellow-900 shadow-lg shadow-yellow-500/30",
+    label: "MEGA SALE",
   },
   LimitedOffer: {
-    bg: "bg-purple-100 border-purple-300 text-purple-700",
-    label: "Limited Offer",
+    bg: "bg-gradient-to-br from-purple-400/90 to-violet-400/90 border-purple-500/50 backdrop-blur-sm text-purple-900 shadow-lg shadow-purple-500/30",
+    label: "LIMITED OFFER",
   },
   FlashDeal: {
-    bg: "bg-red-100 border-red-300 text-red-700",
-    label: "Flash Deal",
+    bg: "bg-gradient-to-br from-red-400/90 to-rose-400/90 border-red-500/50 backdrop-blur-sm text-red-900 shadow-lg shadow-red-500/30",
+    label: "FLASH DEAL",
   },
   WinterFest: {
-    bg: "bg-blue-100 border-blue-300 text-blue-700",
-    label: "Winter Fest",
+    bg: "bg-gradient-to-br from-blue-400/90 to-indigo-400/90 border-blue-500/50 backdrop-blur-sm text-blue-900 shadow-lg shadow-blue-500/30",
+    label: "WINTER FEST",
+  },
+  NewYear: {
+    bg: "bg-gradient-to-br from-emerald-400/90 to-teal-400/90 border-emerald-500/50 backdrop-blur-sm text-emerald-900 shadow-lg shadow-emerald-500/30",
+    label: "NEW YEAR",
+  },
+  Opening: {
+    bg: "bg-gradient-to-br from-rose-400/90 to-pink-400/90 border-rose-500/50 backdrop-blur-sm text-rose-900 shadow-lg shadow-rose-500/30",
+    label: "GRAND OPENING",
+  },
+  Onam: {
+    bg: "bg-gradient-to-br from-orange-400/90 to-amber-400/90 border-orange-500/50 backdrop-blur-sm text-orange-900 shadow-lg shadow-orange-500/30",
+    label: "ONAM SPECIAL",
   },
   Default: {
-    bg: "bg-gray-100 border-gray-300 text-gray-700",
-    label: "Special Offer",
+    bg: "bg-gradient-to-br from-slate-200/80 to-slate-300/80 border-slate-400/50 backdrop-blur-sm text-slate-800 shadow-lg shadow-slate-400/30",
+    label: "SPECIAL OFFER",
   },
 };
 
-// ⚠ Add your Cloudinary sticker URLs here
 const badgeStickers = {
   HolidaySpecial: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806646/Holiday_brwrsx.svg",
   MegaSale: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806877/MGsale_ctzadc.svg",
-  LimitedOffer:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806627/Limited_vhvtkm.svg",
+  LimitedOffer: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806627/Limited_vhvtkm.svg",
   FlashDeal: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806637/Flash_xqy9q8.svg",
   WinterFest: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806639/Chrismes_akmc6z.svg",
-  NewYear:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806626/NEWYear_lmht25.svg",
-  Opening:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806637/GR_qfwb4h.svg",
-  Onam:"https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806633/Onam_mtyy2u.svg",
-  Default:"",
+  NewYear: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806626/NEWYear_lmht25.svg",
+  Opening: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806637/GR_qfwb4h.svg",
+  Onam: "https://res.cloudinary.com/dgjsbjmph/image/upload/v1765806633/Onam_mtyy2u.svg",
+  Default: "",
 };
 
 export default function CouponPreview({
@@ -50,24 +61,16 @@ export default function CouponPreview({
   footerText = "#SeeYouThere",
   userCode,
   qrPath,
-  theme
-})
+  theme,
+}) {
+  const DEFAULT_THEME = {
+    primary: "#ffffff",
+    footer: "#111827",
+    text: "#0f172a",
+  };
 
+  const safeTheme = theme || DEFAULT_THEME;
 
-
-{
-
-  console.log(theme);
-  
-const DEFAULT_THEME = {
-  primary: "#ffffff",
-  footer: "#111827",
-  text: "#0f172a",
-};
-
-const safeTheme = theme || DEFAULT_THEME;
-
-  
   const backend = useMemo(() => {
     return (import.meta.env.VITE_API_BASE || "http://localhost:5000").replace(
       "/api",
@@ -82,118 +85,209 @@ const safeTheme = theme || DEFAULT_THEME;
   const qrURL = qrPath || null;
 
   return (
-    <div  className="rounded-3xl shadow-xl border mx-auto w-full max-w-[850px] overflow-hidden"
-  style={{
-    backgroundColor: safeTheme?.primary || "#ffffff",
-    color: safeTheme?.text || "#000000",
-  }}>
-
+    <div 
+      className="
+        rounded-3xl shadow-2xl border-4 border-slate-200/50
+        mx-auto w-full max-w-[380px] overflow-hidden
+        hover:shadow-teal-500/20 hover:-translate-y-2 transition-all duration-500
+      "
+      style={{
+        backgroundColor: safeTheme?.primary || "#ffffff",
+        color: safeTheme?.text || "#000000",
+      }}
+    >
       {/* BODY */}
-      <div className="p-8" style={{ color: safeTheme?.text || "#111" }}>
+      <div className="p-6 md:p-8 relative">
+        {/* SUBTLE BACKGROUND GRADIENT */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: `linear-gradient(135deg, ${safeTheme.primary}20 0%, ${safeTheme.footer}20 100%)`
+          }}
+        />
 
-
-        {/* HEADER - FIXED LAYOUT */}
-        <div className="flex justify-between items-start">
-
+        {/* HEADER */}
+        <div className="flex justify-between items-start mb-8 relative z-10">
           {/* SHOP INFO */}
-          <div className="max-w-[60%]">
-           <h1 className="text-4xl font-bold leading-tight" style={{ color: safeTheme.text }}>
-              {shop?.name}
+          <div className="max-w-[65%] space-y-2">
+            <h1 
+              className="text-2xl md:text-3xl font-black leading-tight drop-shadow-lg"
+              style={{ color: safeTheme.text }}
+            >
+              {shop?.name || "Shop Name"}
             </h1>
-
-            <p className="uppercase tracking-wide text-sm mt-1" style={{ color: safeTheme.text }}>
-              {shop?.category}
+            
+            <p 
+              className="uppercase tracking-[0.2em] text-xs md:text-sm font-semibold opacity-90"
+              style={{ color: safeTheme.text }}
+            >
+              {shop?.category || "Category"}
             </p>
 
             {shop?.address && (
-              <p className="flex items-center gap-2 mt-4 text-sm" style={{ color: safeTheme.text }}>
+              <p 
+                className="flex items-center gap-1.5 text-xs md:text-sm mt-1 opacity-80"
+                style={{ color: safeTheme.text }}
+              >
                 📍 {shop.address}
               </p>
             )}
           </div>
 
-          {/* POSTER IMAGE */}
-          <img
-            src={shopLogo}
-            className="w-32 h-40 object-cover rounded-lg border shadow"
-            alt="logo"
-          />
+          {/* SHOP LOGO - Enhanced */}
+          <div className="relative">
+            <img
+              src={shopLogo}
+              className="
+                w-24 h-32 md:w-28 md:h-36 object-cover 
+                rounded-2xl border-4 border-white/80 shadow-2xl shadow-black/20
+                hover:scale-105 transition-transform duration-300
+              "
+              alt="Shop Logo"
+              loading="lazy"
+            />
+          </div>
         </div>
 
-        {/* SUBTEXT */}
-        <p className="text-center mt-10 uppercase text-sm tracking-wide" style={{ color: safeTheme.text }}>
-          Scan your QR at shop
+        {/* SCAN PROMPT */}
+        <p 
+          className="text-center uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-8 px-4 opacity-90"
+          style={{ color: safeTheme.text }}
+        >
+          SCAN AT SHOP
         </p>
 
         {/* TITLE + DESCRIPTION */}
-        <div className="text-center mt-8">
-          <h2 className="text-2xl font-bold">{title}</h2>
-
-          <p className="mt-1 text-sm break-words px-3" style={{ color: safeTheme.text }}>
-            {description}
+        <div className="text-center mb-10 relative z-10">
+          <h2 className="text-xl md:text-2xl font-black mb-3 leading-tight px-4">
+            {title || "Coupon Title"}
+          </h2>
+          
+          <p 
+            className="text-sm md:text-base px-6 md:px-8 leading-relaxed break-words opacity-90"
+            style={{ color: safeTheme.text }}
+          >
+            {description || "Offer description will appear here..."}
           </p>
         </div>
 
-        {/* FIXED 3-COLUMN SECTION (EXACT DESIGN MATCH) */}
-        <div className="mt-12 grid grid-cols-3 items-center">
-
-          {/* LEFT - VALIDITY */}
-          <div className="pl-6">
-            <p className="font-bold uppercase text-sm">VALID FOR</p>
-            <p className="text-[80px] leading-none font-extrabold mt-2">
-              {validDays}
-            </p>
-            <p className="text-lg -mt-2">days</p>
-
-            <p className="mt-10 uppercase font-bold text-sm">Your Code</p>
-            <p className="font-mono text-xl mt-1">{userCode}</p>
+        {/* 3-COLUMN LAYOUT - PERFECTLY ALIGNED */}
+        <div className="grid grid-cols-3 items-stretch gap-4 mb-8 relative z-10">
+          {/* LEFT: VALIDITY & CODE */}
+          <div className="space-y-4 pr-2">
+            <div>
+              <p className="uppercase tracking-[0.2em] text-xs font-bold opacity-80">
+                VALID FOR
+              </p>
+              <p 
+                className="text-5xl md:text-6xl leading-none font-black drop-shadow-lg"
+                style={{ color: safeTheme.text }}
+              >
+                {validDays || "7"}
+              </p>
+              <p className="text-base font-semibold -mt-1 opacity-90" style={{ color: safeTheme.text }}>
+                DAYS
+              </p>
+            </div>
+            
+            <div>
+              <p className="uppercase tracking-[0.2em] text-xs font-bold opacity-80">
+                YOUR CODE
+              </p>
+              <p 
+                className="font-mono text-lg md:text-xl font-bold tracking-wider bg-white/80 px-3 py-1.5 rounded-xl shadow-md"
+                style={{ color: safeTheme.text }}
+              >
+                {userCode || "ABC123"}
+              </p>
+            </div>
           </div>
 
-          {/* CENTER - STICKER BADGE */}
-          <div className="flex justify-center">
-            <img
-              src={sticker}
-              className="w-30 h-32 object-contain drop-shadow-lg"
-              alt=" "
-            />
-          </div>
-
-          {/* RIGHT - QR */}
-          <div className="flex justify-center pr-4">
-            {qrURL ? (
-              <img
-                src={qrURL}
-                className="w-32 h-32 rounded-md border shadow-md"
-              />
+          {/* CENTER: BADGE STICKER */}
+          <div className="flex justify-center items-center p-2">
+            {sticker ? (
+              <div className={`p-3 rounded-2xl shadow-2xl shadow-black/20 w-28 h-32 flex items-center justify-center`}>
+                <img
+                  src={sticker}
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                  alt="Badge"
+                  loading="lazy"
+                />
+              </div>
             ) : (
-              <div className="w-32 h-32 bg-gray-200 rounded-md border flex items-center justify-center">
-                <p className="text-xs" style={{ color: safeTheme.text }}>QR Preview</p>
+              <div className={`
+                w-28 h-32 rounded-2xl shadow-2xl shadow-black/20
+                flex items-center justify-center p-4
+                ${badge.bg} text-sm font-bold uppercase tracking-wide
+              `}>
+                {badge.label}
               </div>
             )}
           </div>
 
+          {/* RIGHT: QR CODE */}
+          <div className="flex justify-end items-center pl-2">
+            {qrURL ? (
+              <img
+                src={qrURL}
+                className="
+                  w-28 h-28 md:w-32 md:h-32 rounded-2xl border-4 border-white/90
+                  shadow-2xl shadow-black/30 hover:shadow-teal-500/50
+                  transition-all duration-300 cursor-pointer
+                "
+                alt="QR Code"
+                loading="lazy"
+              />
+            ) : (
+              <div 
+                className="
+                  w-28 h-28 md:w-32 md:h-32 rounded-2xl border-4 border-slate-300/50
+                  bg-gradient-to-br from-slate-200/50 to-slate-300/50
+                  flex items-center justify-center shadow-xl
+                "
+                style={{ color: safeTheme.text }}
+              >
+                <span className="text-xs font-semibold uppercase tracking-wide text-center px-1">
+                  QR Preview
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* EXPIRY */}
-        <p className="text-center mt-10text-sm" style={{ color: safeTheme.text }}>
-          <span className="font-semibold">Valid Until:</span> {expiryDate}
-        </p>
+        <div className="text-center mb-8 relative z-10">
+          <p 
+            className="text-sm md:text-base font-semibold opacity-90 px-4"
+            style={{ color: safeTheme.text }}
+          >
+            <span className="font-black">Valid Until:</span>{' '}
+            <span className="font-mono tracking-wider">{expiryDate || "DD/MM/YYYY"}</span>
+          </p>
+        </div>
       </div>
 
-      {/* FOOTER */}
-    <div
-  className="py-5 px-8 flex justify-between items-center"
-  style={{
-    backgroundColor: safeTheme?.footer || "#111827",
-    color: safeTheme?.text || "#ffffff",
-  }}
->
+      {/* FOOTER - Enhanced */}
+      <div
+        className="
+          py-6 px-8 flex justify-between items-center shadow-2xl shadow-black/40
+          border-t-4 border-white/20
+        "
+        style={{
+          backgroundColor: safeTheme?.footer || "#111827",
+          color: safeTheme?.text || "#ffffff",
+        }}
+      >
+        <p 
+          className="text-lg md:text-xl font-black uppercase tracking-wide drop-shadow-lg"
+          style={{ color: safeTheme.text }}
+        >
+          {footerText || "#SeeYouThere"}
+        </p>
 
-        <p className="text-lg font-semibold">{footerText}</p>
-
-        <div className="text-right opacity-80 leading-none">
-          <p className="text-sm">RORONOA</p>
-          <p className="text-xs opacity-60">ADmarketing</p>
+        <div className="text-right leading-tight opacity-90">
+          <p className="text-sm md:text-base font-bold">RORONOA</p>
+          <p className="text-xs md:text-sm font-semibold opacity-75">ADmarketing</p>
         </div>
       </div>
     </div>
