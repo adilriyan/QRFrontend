@@ -7,12 +7,11 @@ import ShopCard from "../components/ShopCard";
 export default function Shops() {
   const navigate = useNavigate();
 
-  // SHOPS STATE
+
   const [shops, setShops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
 
-  // FETCH SHOPS
   const fetchShops = async () => {
     try {
       setLoading(true);
@@ -31,7 +30,6 @@ export default function Shops() {
     fetchShops();
   }, []);
 
-  // Skeleton cards for loading
   const SkeletonCard = () => (
     <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl shadow-slate-950/50 p-8 animate-pulse">
       <div className="w-24 h-24 bg-slate-800/50 rounded-2xl mx-auto mb-6"></div>
@@ -47,7 +45,7 @@ export default function Shops() {
 
   return (
     <div className="space-y-8">
-      {/* Page Header */}
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-black bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent">
@@ -71,14 +69,14 @@ export default function Shops() {
         </button>
       </div>
 
-      {/* ERROR */}
+ 
       {errorMsg && (
         <div className="bg-red-500/20 border border-red-500/40 backdrop-blur-sm rounded-3xl p-6 max-w-2xl mx-auto">
           <p className="text-red-300 font-semibold text-center">{errorMsg}</p>
         </div>
       )}
 
-      {/* LOADING SKELETONS */}
+  
       {loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[...Array(8)].map((_, i) => (
@@ -87,7 +85,7 @@ export default function Shops() {
         </div>
       )}
 
-      {/* EMPTY STATE */}
+
       {!loading && shops.length === 0 && !errorMsg && (
         <div className="text-center py-24">
           <div className="w-24 h-24 bg-slate-800/50 rounded-3xl flex items-center justify-center mx-auto mb-6">
@@ -112,7 +110,7 @@ export default function Shops() {
         </div>
       )}
 
-      {/* SHOPS GRID */}
+
       {!loading && shops.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {shops.map((shop) => (

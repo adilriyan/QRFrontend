@@ -64,17 +64,17 @@ export default function InvoiceView() {
     }
   };
 
-  // Loading UI
+
   if (status === "loading") {
     return (
       <div className="space-y-8 min-h-screen">
-        {/* Page Header Skeleton */}
+      
         <div className="space-y-2">
           <div className="h-12 w-80 bg-slate-800/50 rounded-2xl animate-pulse"></div>
           <div className="h-4 w-64 bg-slate-800/30 rounded-xl animate-pulse"></div>
         </div>
 
-        {/* Invoice Preview Skeleton */}
+
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl animate-pulse">
           <div className="space-y-8">
             <div className="space-y-4">
@@ -88,7 +88,7 @@ export default function InvoiceView() {
     );
   }
 
-  // Error UI
+
   if (status === "error" || !invoice) {
     return (
       <div className="flex flex-col justify-center items-center min-h-[60vh] space-y-6">
@@ -125,10 +125,10 @@ export default function InvoiceView() {
     );
   }
 
-  // MAIN UI
+
   return (
     <div className="py-8 max-w-6xl mx-auto space-y-8">
-      {/* Page Header */}
+
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
           <div className="flex items-center gap-4 mb-2">
@@ -189,7 +189,7 @@ export default function InvoiceView() {
         </div>
       </div>
 
-      {/* QUICK INFO CARDS */}
+     
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-teal-500/20 hover:border-teal-500/50 transition-all duration-300">
           <div className="flex items-center justify-between mb-4">
@@ -253,7 +253,6 @@ export default function InvoiceView() {
         </div>
       </div>
 
-      {/* INVOICE PREVIEW */}
       <div className="bg-slate-900/90 backdrop-blur-2xl border border-slate-800/70 rounded-3xl p-2 sm:p-4 shadow-2xl shadow-slate-950/50">
         <div ref={pdfRef} className="bg-white/95 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-slate-200/20">
           <InvoicePreview

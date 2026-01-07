@@ -2,14 +2,14 @@ import { useMemo } from "react";
 import { FaEye, FaQrcode } from "react-icons/fa";
 
 export default function CouponCard({ coupon, backendBase, onClick }) {
-  // Resolve QR image path
+
   const qrUrl = coupon.qrImagePath
     ? coupon.qrImagePath.startsWith("http")
       ? coupon.qrImagePath
       : backendBase + coupon.qrImagePath
     : null;
 
-  // Format expiry date
+
   const formattedExpiry = coupon.expiryDate
     ? new Date(coupon.expiryDate).toLocaleDateString("en-IN", {
         day: "numeric",
@@ -28,10 +28,10 @@ export default function CouponCard({ coupon, backendBase, onClick }) {
         overflow-hidden h-[420px]
       "
     >
-      {/* Gradient Overlay */}
+     
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-      {/* QR Preview */}
+   
       <div className="relative z-10 p-8 pt-12 pb-8 flex flex-col items-center">
         {qrUrl ? (
           <div className="relative group/qr">
@@ -58,25 +58,25 @@ export default function CouponCard({ coupon, backendBase, onClick }) {
         )}
       </div>
 
-      {/* CONTENT */}
+  
       <div className="relative z-10 px-8 pb-8 space-y-4">
-        {/* Title */}
+   
         <h3 className="text-xl md:text-2xl font-black text-slate-100 text-center leading-tight tracking-tight line-clamp-2">
           {coupon.title}
         </h3>
 
-        {/* Description */}
+      
         <p className="text-slate-400 text-sm text-center leading-relaxed line-clamp-3 px-2">
           {coupon.description}
         </p>
 
-        {/* Expiry */}
+     
         <div className="flex items-center justify-center gap-2 text-xs text-slate-500 uppercase tracking-wide">
           <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
           <span>Expires {formattedExpiry}</span>
         </div>
 
-        {/* Action Button */}
+        
         <button
           className="
             w-full h-14 bg-gradient-to-r from-teal-500 via-teal-600 to-emerald-500

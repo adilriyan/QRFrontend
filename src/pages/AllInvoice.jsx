@@ -31,7 +31,7 @@ function AllInvoice() {
     fetchInvoices();
   }, []);
 
-  // SEARCH Function
+
   const filteredInvoices = invoices.filter((inv) => {
     const query = search.toLowerCase();
     return (
@@ -44,22 +44,22 @@ function AllInvoice() {
     );
   });
 
-  // Pagination calculations
+
   const totalPages = Math.ceil(filteredInvoices.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentInvoices = filteredInvoices.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-  // Loading UI
+
   if (loading) {
     return (
       <div className="space-y-8 py-12">
-        {/* Page Header Skeleton */}
+    
         <div className="space-y-2">
           <div className="h-12 w-80 bg-slate-800/50 rounded-2xl animate-pulse"></div>
           <div className="h-4 w-64 bg-slate-800/30 rounded-xl animate-pulse"></div>
         </div>
 
-        {/* Search & Grid Skeleton */}
+       
         <div className="space-y-6">
           <div className="h-14 w-full max-w-md bg-slate-800/50 rounded-2xl animate-pulse"></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -78,7 +78,6 @@ function AllInvoice() {
     );
   }
 
-  // Error UI
   if (errorMsg && filteredInvoices.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center min-h-[60vh] space-y-8 py-12">
@@ -111,7 +110,7 @@ function AllInvoice() {
 
   return (
     <div className="py-12 space-y-12">
-      {/* Page Header */}
+     
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent tracking-tight mb-2">
@@ -133,7 +132,7 @@ function AllInvoice() {
         </Link>
       </div>
 
-      {/* Search & Filters */}
+  
       <div className="max-w-2xl">
         <div className="group relative">
           <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-teal-400 transition-colors" fill="none" viewBox="0 0 24 24">
@@ -165,7 +164,7 @@ function AllInvoice() {
         </div>
       </div>
 
-      {/* Invoices Grid */}
+    
       <div className="space-y-8">
         {filteredInvoices.length === 0 ? (
           <div className="text-center py-32">
@@ -202,10 +201,9 @@ function AllInvoice() {
                   to={`/invoice/${invoice._id || invoice.id}`}
                   className="group relative block h-[420px] w-full bg-slate-900/90 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-6 shadow-2xl shadow-slate-950/50 hover:shadow-teal-500/30 hover:border-teal-500/60 hover:-translate-y-2 transition-all duration-500 overflow-hidden hover:shadow-2xl"
                 >
-                  {/* Decorative gradient overlay */}
+             
                   <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 via-emerald-500/3 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* Quick Info Badge */}
+             
                   <div className="relative z-10 mb-6">
                     <div className="flex items-center justify-between mb-3">
                       <span className="px-3 py-1 bg-gradient-to-r from-slate-700/80 to-slate-800/80 backdrop-blur-xl text-slate-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-slate-700/50">
@@ -219,7 +217,7 @@ function AllInvoice() {
                     <p className="text-slate-500 text-sm font-medium capitalize">{invoice.eventType || 'General'}</p>
                   </div>
 
-                  {/* Preview Container */}
+              
                   <div className="relative z-10 flex-1">
                     <div className="h-full bg-white/95 backdrop-blur-xl rounded-2xl overflow-hidden shadow-inner border border-slate-200/30 group-hover:shadow-teal-200/20 transition-shadow">
                       <InvoicePreview 
@@ -230,7 +228,6 @@ function AllInvoice() {
                     </div>
                   </div>
 
-                  {/* Amount Overlay */}
                   <div className="relative z-20 mt-4 pt-4 border-t border-slate-800/50">
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500 text-sm font-medium uppercase tracking-wide">Total</span>
@@ -243,7 +240,6 @@ function AllInvoice() {
                     </div>
                   </div>
 
-                  {/* Hover Action */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6 pointer-events-none">
                     <div className="w-full text-center">
                       <svg className="w-8 h-8 text-teal-400 mx-auto mb-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -257,7 +253,7 @@ function AllInvoice() {
               ))}
             </div>
 
-            {/* Pagination */}
+   
             {totalPages > 1 && (
               <div className="flex flex-wrap items-center justify-center gap-2 pt-12 border-t border-slate-800/50">
                 <button

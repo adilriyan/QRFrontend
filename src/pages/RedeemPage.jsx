@@ -33,7 +33,7 @@ export default function RedeemPage() {
       .catch(() => setStatus("invalid"));
   }, [userCouponId]);
 
-  // Enhanced PDF generation
+
   const downloadClientPDF = async () => {
     if (!pdfRef.current || !data) return;
 
@@ -42,18 +42,18 @@ export default function RedeemPage() {
     try {
       const container = pdfRef.current;
       
-      // Clone for clean PDF capture
+      
       const clone = container.cloneNode(true);
       clone.style.position = "absolute";
       clone.style.left = "-9999px";
       clone.style.top = "0";
-      clone.style.width = "595px"; // A4 width in pixels at 96dpi
+      clone.style.width = "595px"; 
       clone.style.background = "white";
       clone.style.padding = "40px";
       
       document.body.appendChild(clone);
 
-      // Wait for images
+     
       await new Promise(resolve => setTimeout(resolve, 500));
 
       const canvas = await html2canvas(clone, {
@@ -81,7 +81,7 @@ export default function RedeemPage() {
     }
   };
 
-  // LOADING
+
   if (status === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center p-8">
@@ -96,7 +96,7 @@ export default function RedeemPage() {
     );
   }
 
-  // INVALID
+
   if (status === "invalid") {
     return (
       <div className="min-h-screen flex items-center justify-center p-8">
@@ -133,10 +133,10 @@ export default function RedeemPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 gap-12">
       
-      {/* PDF CAPTURE WRAPPER */}
+    
       <div ref={pdfRef} className="w-full max-w-2xl">
         
-        {/* USED STATE */}
+   
         {status === "used" && (
           <div className="
             bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-8 border-yellow-500/40
@@ -183,13 +183,13 @@ export default function RedeemPage() {
           </div>
         )}
 
-        {/* VALID STATE */}
+   
         {status === "valid" && (
           <div className="
             bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border-8 border-emerald-500/50
             backdrop-blur-xl rounded-4xl shadow-2xl shadow-emerald-500/30 p-12 sm:p-16 max-w-4xl mx-auto text-center
           ">
-            {/* Animated Success */}
+         
             <div className="w-36 h-36 bg-emerald-500/40 border-8 border-emerald-500/70 rounded-full flex items-center justify-center mx-auto mb-10 animate-bounce">
               <FaCheckCircle className="w-24 h-24 text-emerald-500 drop-shadow-2xl" />
             </div>
@@ -198,7 +198,7 @@ export default function RedeemPage() {
               Redeemed Successfully!
             </h1>
             
-            {/* Details Grid */}
+        
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-slate-900/60 backdrop-blur-sm rounded-4xl p-10 mb-12 border border-slate-800/50">
               <div className="space-y-4 text-left">
                 <div>
@@ -267,7 +267,7 @@ export default function RedeemPage() {
         )}
       </div>
 
-      {/* DOWNLOAD BUTTON */}
+    
       <button
         onClick={downloadClientPDF}
         disabled={generatingPDF}

@@ -28,17 +28,17 @@ export default function InvoiceList() {
     }
   }
 
-  // Loading UI
+
   if (loading) {
     return (
       <div className="space-y-8">
-        {/* Page Header Skeleton */}
+      
         <div className="space-y-2">
           <div className="h-12 w-80 bg-slate-800/50 rounded-2xl animate-pulse"></div>
           <div className="h-4 w-64 bg-slate-800/30 rounded-xl animate-pulse"></div>
         </div>
 
-        {/* Table Skeleton */}
+    
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl animate-pulse">
           <div className="space-y-4 mb-8">
             <div className="h-8 w-72 bg-slate-800/50 rounded-xl"></div>
@@ -55,7 +55,7 @@ export default function InvoiceList() {
     );
   }
 
-  // Error UI
+ 
   if (errorMsg) {
     return (
       <div className="flex flex-col justify-center items-center min-h-[60vh] space-y-4">
@@ -77,10 +77,10 @@ export default function InvoiceList() {
     );
   }
 
-  // MAIN UI
+
   return (
     <div className="py-6 space-y-8">
-      {/* Page Header */}
+    
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent">
@@ -101,7 +101,7 @@ export default function InvoiceList() {
         </Link>
       </div>
 
-      {/* STATS CARDS */}
+      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300">
           <div className="flex items-center justify-between mb-4">
@@ -155,7 +155,7 @@ export default function InvoiceList() {
         </div>
       </div>
 
-      {/* INVOICES TABLE */}
+      
       <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -193,7 +193,6 @@ export default function InvoiceList() {
         ) : (
           <div className="overflow-x-auto">
             <div className="bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-3xl overflow-hidden shadow-2xl">
-              {/* Table Header */}
               <div className="bg-gradient-to-r from-slate-900/70 to-slate-950/70 backdrop-blur-xl border-b border-slate-700/50 px-8 py-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 text-sm font-semibold text-slate-300 uppercase tracking-wide">
                   <span className="flex items-center gap-2 font-black">
@@ -208,7 +207,6 @@ export default function InvoiceList() {
                 </div>
               </div>
 
-              {/* Table Body */}
               <div className="divide-y divide-slate-700/50 max-h-[60vh] overflow-y-auto">
                 {invoices.map((inv) => (
                   <Link
@@ -217,7 +215,6 @@ export default function InvoiceList() {
                     className="group block p-8 hover:bg-slate-800/70 transition-all duration-300 border-r-4 border-transparent hover:border-teal-500/50 hover:shadow-teal-500/10"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
-                      {/* Customer */}
                       <div className="md:col-span-2">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 border-2 border-blue-500/30 rounded-2xl flex items-center justify-center group-hover:bg-blue-500/30 transition-all duration-300">
@@ -232,18 +229,16 @@ export default function InvoiceList() {
                         </div>
                       </div>
 
-                      {/* Event Date */}
                       <div className="text-right">
                         <p className="font-semibold text-slate-300 text-sm">{inv.eventDate ? new Date(inv.eventDate).toLocaleDateString('en-IN') : '—'}</p>
                         <p className="text-slate-500 text-xs">{inv.eventTime || '—'}</p>
                       </div>
 
-                      {/* Phone */}
                       <div className="text-right hidden lg:block">
                         <p className="font-mono text-slate-400 text-sm">{inv.customerPhone || '—'}</p>
                       </div>
 
-                      {/* Amount */}
+              
                       <div className="text-right">
                         <p className="text-2xl font-black bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
                           ₹{Number(inv.totalAmount || 0).toLocaleString()}

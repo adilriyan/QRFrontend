@@ -12,7 +12,7 @@ export default function QrPages() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
 
-  // Backend base URL
+
   const backend = useMemo(() => {
     return (import.meta.env.VITE_API_BASE || "http://localhost:5000").replace("/api", "");
   }, []);
@@ -29,7 +29,7 @@ export default function QrPages() {
       });
   }, []);
 
-  // Search filtering
+ 
   const filteredTemplates = useMemo(() => {
     const q = search.toLowerCase();
     return templates.filter((t) => {
@@ -42,7 +42,7 @@ export default function QrPages() {
     });
   }, [templates, search]);
 
-  // Skeleton card
+ 
   const SkeletonCard = () => (
     <div className="
       bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 
@@ -59,16 +59,16 @@ export default function QrPages() {
   if (loading) {
     return (
       <div className="min-h-screen p-8 space-y-12">
-        {/* Header */}
+      
         <div className="flex items-center justify-between">
           <div className="h-14 bg-slate-800/50 rounded-3xl w-80 animate-pulse"></div>
           <div className="h-12 bg-slate-800/50 rounded-3xl w-56 animate-pulse"></div>
         </div>
 
-        {/* Search */}
+
         <div className="h-14 bg-slate-800/50 rounded-3xl max-w-2xl mx-auto animate-pulse"></div>
 
-        {/* Grid */}
+ 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[...Array(12)].map((_, i) => <SkeletonCard key={i} />)}
         </div>
@@ -102,7 +102,7 @@ export default function QrPages() {
 
   return (
     <div className="min-h-screen p-8 lg:px-12 lg:pb-12 space-y-12">
-      {/* HEADER */}
+
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
           <h1 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-slate-100 via-teal-100 to-emerald-100 bg-clip-text text-transparent drop-shadow-2xl">
@@ -126,7 +126,7 @@ export default function QrPages() {
         </button>
       </div>
 
-      {/* SEARCH BAR */}
+
       <div className="max-w-2xl mx-auto">
         <div className="relative group">
           <FaSearch className="
@@ -163,7 +163,7 @@ export default function QrPages() {
         </p>
       </div>
 
-      {/* TEMPLATES GRID */}
+
       {filteredTemplates.length > 0 ? (
         <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6`}>
           {filteredTemplates.map((coupon) => (

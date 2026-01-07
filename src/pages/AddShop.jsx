@@ -4,7 +4,7 @@ import { API } from "../api/api";
 import { useNavigate } from "react-router-dom";
 
 export default function AddShop() {
-  // FORM STATES
+
   const [name, setName] = useState("");
   const [owner, setOwnerName] = useState("");
   const [mob, setMob] = useState("");
@@ -18,7 +18,7 @@ export default function AddShop() {
 
   const navigate = useNavigate();
 
-  // Handle logo upload with preview
+
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -62,7 +62,6 @@ export default function AddShop() {
 
   return (
     <div className="space-y-8">
-      {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-black bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent">
@@ -84,10 +83,8 @@ export default function AddShop() {
 
         <form onSubmit={handleSubmit} className="space-y-7">
           
-          {/* 2-Column Grid for Inputs */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            {/* Shop Name */}
             <div>
               <label className="flex items-center gap-2 text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
                 <FaStore className="text-teal-400" />
@@ -108,7 +105,6 @@ export default function AddShop() {
               />
             </div>
 
-            {/* Owner Name */}
             <div>
               <label className="flex items-center gap-2 text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
                 <FaUser className="text-emerald-400" />
@@ -129,7 +125,6 @@ export default function AddShop() {
               />
             </div>
 
-            {/* Phone */}
             <div>
               <label className="flex items-center gap-2 text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
                 <FaPhone className="text-blue-400" />
@@ -150,7 +145,6 @@ export default function AddShop() {
               />
             </div>
 
-            {/* Category */}
             <div>
               <label className="flex items-center gap-2 text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
                 <FaTag className="text-purple-400" />
@@ -171,7 +165,6 @@ export default function AddShop() {
             </div>
           </div>
 
-          {/* Address - Full Width */}
           <div>
             <label className="flex items-center gap-2 text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
               <FaMapMarkerAlt className="text-orange-400" />
@@ -192,14 +185,13 @@ export default function AddShop() {
             />
           </div>
 
-          {/* Logo Upload - Enhanced with Preview */}
           <div>
             <label className="flex items-center gap-2 text-slate-300 font-semibold mb-4 text-sm uppercase tracking-wide">
               <FaImage className="text-indigo-400" />
               Shop Logo (Optional)
             </label>
             
-            {/* Upload Area */}
+       
             <div className="group">
               <label 
                 htmlFor="logo-upload"
@@ -213,7 +205,6 @@ export default function AddShop() {
                 "
               >
                 {logoPreview ? (
-                  // Preview Image
                   <div className="relative w-full h-full rounded-2xl overflow-hidden">
                     <img 
                       src={logoPreview} 
@@ -238,7 +229,6 @@ export default function AddShop() {
                     </button>
                   </div>
                 ) : (
-                  // Upload Prompt
                   <div className="text-center space-y-3 p-8">
                     <FaUpload className="w-12 h-12 text-slate-400 mx-auto group-hover:text-teal-400 transition-colors" />
                     <div>
@@ -262,7 +252,6 @@ export default function AddShop() {
             </div>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}

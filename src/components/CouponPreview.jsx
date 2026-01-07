@@ -2,39 +2,39 @@ import React, { useMemo } from "react";
 
 const badgeStyles = {
   HolidaySpecial: {
-    bg: "bg-gradient-to-br from-teal-400/90 to-emerald-400/90 border-teal-500/50 backdrop-blur-sm text-teal-900 shadow-lg shadow-teal-500/30",
+    bg: "bg-gradient-to-br from-teal-400/90 to-emerald-400/90 backdrop-blur-sm text-teal-900 shadow-lg shadow-teal-500/30",
     label: "HOLIDAY SPECIALS",
   },
   MegaSale: {
-    bg: "bg-gradient-to-br from-yellow-400/90 to-orange-400/90 border-yellow-500/50 backdrop-blur-sm text-yellow-900 shadow-lg shadow-yellow-500/30",
+    bg: "bg-gradient-to-br from-yellow-400/90 to-orange-400/90 backdrop-blur-sm text-yellow-900 shadow-lg shadow-yellow-500/30",
     label: "MEGA SALE",
   },
   LimitedOffer: {
-    bg: "bg-gradient-to-br from-purple-400/90 to-violet-400/90 border-purple-500/50 backdrop-blur-sm text-purple-900 shadow-lg shadow-purple-500/30",
+    bg: "bg-gradient-to-br from-purple-400/90 to-violet-400/90 backdrop-blur-sm text-purple-900 shadow-lg shadow-purple-500/30",
     label: "LIMITED OFFER",
   },
   FlashDeal: {
-    bg: "bg-gradient-to-br from-red-400/90 to-rose-400/90 border-red-500/50 backdrop-blur-sm text-red-900 shadow-lg shadow-red-500/30",
+    bg: "bg-gradient-to-br from-red-400/90 to-rose-400/90 backdrop-blur-sm text-red-900 shadow-lg shadow-red-500/30",
     label: "FLASH DEAL",
   },
   WinterFest: {
-    bg: "bg-gradient-to-br from-blue-400/90 to-indigo-400/90 border-blue-500/50 backdrop-blur-sm text-blue-900 shadow-lg shadow-blue-500/30",
+    bg: "bg-gradient-to-br from-blue-400/90 to-indigo-400/90 backdrop-blur-sm text-blue-900 shadow-lg shadow-blue-500/30",
     label: "WINTER FEST",
   },
   NewYear: {
-    bg: "bg-gradient-to-br from-emerald-400/90 to-teal-400/90 border-emerald-500/50 backdrop-blur-sm text-emerald-900 shadow-lg shadow-emerald-500/30",
+    bg: "bg-gradient-to-br from-emerald-400/90 to-teal-400/90 backdrop-blur-sm text-emerald-900 shadow-lg shadow-emerald-500/30",
     label: "NEW YEAR",
   },
   Opening: {
-    bg: "bg-gradient-to-br from-rose-400/90 to-pink-400/90 border-rose-500/50 backdrop-blur-sm text-rose-900 shadow-lg shadow-rose-500/30",
+    bg: "bg-gradient-to-br from-rose-400/90 to-pink-400/90 backdrop-blur-sm text-rose-900 shadow-lg shadow-rose-500/30",
     label: "GRAND OPENING",
   },
   Onam: {
-    bg: "bg-gradient-to-br from-orange-400/90 to-amber-400/90 border-orange-500/50 backdrop-blur-sm text-orange-900 shadow-lg shadow-orange-500/30",
+    bg: "bg-gradient-to-br from-orange-400/90 to-amber-400/90 backdrop-blur-sm text-orange-900 shadow-lg shadow-orange-500/30",
     label: "ONAM SPECIAL",
   },
   Default: {
-    bg: "bg-gradient-to-br from-slate-200/80 to-slate-300/80 border-slate-400/50 backdrop-blur-sm text-slate-800 shadow-lg shadow-slate-400/30",
+    bg: "bg-gradient-to-br from-slate-200/80 to-slate-300/80 backdrop-blur-sm text-slate-800 shadow-lg shadow-slate-400/30",
     label: "SPECIAL OFFER",
   },
 };
@@ -96,9 +96,9 @@ export default function CouponPreview({
         color: safeTheme?.text || "#000000",
       }}
     >
-      {/* BODY */}
+  
       <div className="p-6 md:p-8 relative">
-        {/* SUBTLE BACKGROUND GRADIENT */}
+     
         <div 
           className="absolute inset-0 opacity-20"
           style={{
@@ -106,9 +106,9 @@ export default function CouponPreview({
           }}
         />
 
-        {/* HEADER */}
+    
         <div className="flex justify-between items-start mb-8 relative z-10">
-          {/* SHOP INFO */}
+       
           <div className="max-w-[65%] space-y-2">
             <h1 
               className="text-2xl md:text-3xl font-black leading-tight drop-shadow-lg"
@@ -134,7 +134,7 @@ export default function CouponPreview({
             )}
           </div>
 
-          {/* SHOP LOGO - Enhanced */}
+         
           <div className="relative">
             <img
               src={shopLogo}
@@ -149,7 +149,7 @@ export default function CouponPreview({
           </div>
         </div>
 
-        {/* SCAN PROMPT */}
+   
         <p 
           className="text-center uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-8 px-4 opacity-90"
           style={{ color: safeTheme.text }}
@@ -157,7 +157,7 @@ export default function CouponPreview({
           SCAN AT SHOP
         </p>
 
-        {/* TITLE + DESCRIPTION */}
+  
         <div className="text-center mb-10 relative z-10">
           <h2 className="text-xl md:text-2xl font-black mb-3 leading-tight px-4">
             {title || "Coupon Title"}
@@ -171,12 +171,12 @@ export default function CouponPreview({
           </p>
         </div>
 
-        {/* 3-COLUMN LAYOUT - PERFECTLY ALIGNED */}
-        <div className="grid grid-cols-3 items-stretch gap-4 mb-8 relative z-10">
-          {/* LEFT: VALIDITY & CODE */}
-          <div className="space-y-4 pr-2">
+     
+        <div className="grid grid-cols-3 items-center gap-4 mb-8 relative z-10">
+
+          <div className="space-y-6 pr-2">
             <div>
-              <p className="uppercase tracking-[0.2em] text-xs font-bold opacity-80">
+              <p className="uppercase tracking-[0.2em] text-xs font-bold opacity-80 mb-1">
                 VALID FOR
               </p>
               <p 
@@ -191,22 +191,25 @@ export default function CouponPreview({
             </div>
             
             <div>
-              <p className="uppercase tracking-[0.2em] text-xs font-bold opacity-80">
+              <p className="uppercase tracking-[0.2em] text-xs font-bold opacity-80 mb-2">
                 YOUR CODE
               </p>
               <p 
-                className="font-mono text-lg md:text-xl font-bold tracking-wider bg-white/80 px-3 py-1.5 rounded-xl shadow-md"
-                style={{ color: safeTheme.text }}
+                className="font-mono text-lg md:text-xl font-black tracking-wider px-3 py-2 rounded-lg shadow-md"
+                style={{
+                  color: safeTheme.text,
+                  backgroundColor: `${safeTheme.text}15`
+                }}
               >
                 {userCode || "ABC123"}
               </p>
             </div>
           </div>
 
-          {/* CENTER: BADGE STICKER */}
+
           <div className="flex justify-center items-center p-2">
             {sticker ? (
-              <div className={`p-3 rounded-2xl shadow-2xl shadow-black/20 w-28 h-32 flex items-center justify-center`}>
+              <div className="w-28 h-32 flex items-center justify-center">
                 <img
                   src={sticker}
                   className="w-full h-full object-contain drop-shadow-2xl"
@@ -216,16 +219,17 @@ export default function CouponPreview({
               </div>
             ) : (
               <div className={`
-                w-28 h-32 rounded-2xl shadow-2xl shadow-black/20
+                w-28 h-28 rounded-3xl shadow-2xl shadow-black/20
                 flex items-center justify-center p-4
-                ${badge.bg} text-sm font-bold uppercase tracking-wide
+                ${badge.bg} text-xs font-black uppercase tracking-widest
+                text-center leading-tight
               `}>
                 {badge.label}
               </div>
             )}
           </div>
 
-          {/* RIGHT: QR CODE */}
+       
           <div className="flex justify-end items-center pl-2">
             {qrURL ? (
               <img
@@ -255,7 +259,7 @@ export default function CouponPreview({
           </div>
         </div>
 
-        {/* EXPIRY */}
+
         <div className="text-center mb-8 relative z-10">
           <p 
             className="text-sm md:text-base font-semibold opacity-90 px-4"
@@ -267,7 +271,7 @@ export default function CouponPreview({
         </div>
       </div>
 
-      {/* FOOTER - Enhanced */}
+  
       <div
         className="
           py-6 px-8 flex justify-between items-center shadow-2xl shadow-black/40

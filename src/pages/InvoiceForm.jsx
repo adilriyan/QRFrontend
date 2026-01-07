@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { API } from "../api/api";
 import InvoicePreview from "../components/Shared_Invoice_Preview";
 
-// Convert number to words
+
 const numberToWords = (num) => {
   const a = [
     "",
@@ -84,7 +84,7 @@ export default function InvoiceForm() {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Load shops
+
   useEffect(() => {
     API.get("/shops/all")
       .then((res) => {
@@ -102,7 +102,6 @@ export default function InvoiceForm() {
     setSelectedShop(shop || null);
   }, [selectedShopId, shops]);
 
-  // Invoice Data
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
@@ -138,7 +137,6 @@ export default function InvoiceForm() {
 
   const amountInWords = numberToWords(totalAmount);
 
-  // Submit form
   const submit = async (e) => {
     e.preventDefault();
 
@@ -173,17 +171,17 @@ export default function InvoiceForm() {
     }
   };
 
-  // Loading UI
+
   if (loading) {
     return (
       <div className="space-y-8">
-        {/* Page Header Skeleton */}
+      
         <div className="space-y-2">
           <div className="h-12 w-80 bg-slate-800/50 rounded-2xl animate-pulse"></div>
           <div className="h-4 w-64 bg-slate-800/30 rounded-xl animate-pulse"></div>
         </div>
 
-        {/* Form Skeleton */}
+   
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl animate-pulse space-y-6">
             <div className="space-y-4">
@@ -218,7 +216,7 @@ export default function InvoiceForm() {
     );
   }
 
-  // Error UI
+
   if (errorMsg) {
     return (
       <div className="flex flex-col justify-center items-center min-h-[60vh] space-y-4">
@@ -234,10 +232,10 @@ export default function InvoiceForm() {
     );
   }
 
-  // MAIN UI
+
   return (
     <div className="py-6 space-y-8">
-      {/* Page Header */}
+     
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent">
@@ -250,9 +248,9 @@ export default function InvoiceForm() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* FORM */}
+    
         <form onSubmit={submit} className="space-y-8">
-          {/* SHOP SELECT */}
+     
           <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-teal-500/20 hover:border-teal-500/50 transition-all duration-300">
             <div className="flex items-center justify-between mb-6">
               <div className="p-3 rounded-2xl bg-teal-500/20 border border-teal-500/30">
@@ -280,9 +278,8 @@ export default function InvoiceForm() {
             </select>
           </div>
 
-          {/* CUSTOMER & EVENT INFO */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Customer Info */}
+
             <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-blue-500/20 hover:border-blue-500/50 transition-all duration-300">
               <div className="flex items-center justify-between mb-6">
                 <div className="p-3 rounded-2xl bg-blue-500/20 border border-blue-500/30">
@@ -315,7 +312,7 @@ export default function InvoiceForm() {
               </div>
             </div>
 
-            {/* Event Details */}
+      
             <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300">
               <div className="flex items-center justify-between mb-6">
                 <div className="p-3 rounded-2xl bg-emerald-500/20 border border-emerald-500/30">
@@ -348,7 +345,7 @@ export default function InvoiceForm() {
             </div>
           </div>
 
-          {/* ITEMS */}
+       
           <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50">
             <div className="flex items-center justify-between mb-8">
               <div>
@@ -417,7 +414,7 @@ export default function InvoiceForm() {
               </button>
             </div>
 
-            {/* FINANCIALS */}
+      
             <div className="grid grid-cols-2 gap-6 pt-6 border-t border-slate-800/50">
               <div>
                 <label className="block text-slate-400 text-sm font-medium mb-3">Discount</label>
@@ -454,7 +451,7 @@ export default function InvoiceForm() {
             </div>
           </div>
 
-          {/* PAYMENT & NOTES */}
+      
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-purple-500/20 hover:border-purple-500/50 transition-all duration-300">
               <div className="flex items-center justify-between mb-6">
@@ -473,10 +470,10 @@ export default function InvoiceForm() {
                     value={paymentMethod}
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   >
-                    <option value="cash">💰 Cash</option>
-                    <option value="upi">📱 UPI</option>
-                    <option value="card">💳 Card</option>
-                    <option value="bank">🏦 Bank Transfer</option>
+                    <option value="cash"> Cash</option>
+                    <option value="upi"> UPI</option>
+                    <option value="card"> Card</option>
+                    <option value="bank"> Bank Transfer</option>
                   </select>
                 </div>
                 <div>
@@ -493,7 +490,7 @@ export default function InvoiceForm() {
             </div>
           </div>
 
-          {/* SUBMIT BUTTON */}
+    
           <button 
             type="submit"
             className="group w-full bg-gradient-to-r from-teal-500/90 to-emerald-500/90 backdrop-blur-xl text-white font-black text-xl py-8 px-8 rounded-3xl hover:from-teal-600 hover:to-emerald-600 shadow-2xl hover:shadow-teal-500/30 transition-all duration-500 border border-teal-500/40 flex items-center justify-center gap-3"
@@ -505,7 +502,7 @@ export default function InvoiceForm() {
           </button>
         </form>
 
-        {/* PREVIEW */}
+
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div>

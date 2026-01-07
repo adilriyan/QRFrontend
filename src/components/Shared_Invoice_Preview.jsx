@@ -15,9 +15,7 @@ export default function InvoicePreview({ shop, invoice }) {
   const discount = invoice.discount || 0;
   const grandTotal = subtotal - discount;
 
-  // --------------------------
-  // PDF DOWNLOAD
-  // --------------------------
+
   const downloadPDF = async () => {
     setIsGenerating(true);
 
@@ -38,7 +36,6 @@ export default function InvoicePreview({ shop, invoice }) {
 
   return (
     <div className="space-y-6">
-      {/* DOWNLOAD BUTTON */}
       {!isGenerating && (
         <button
           onClick={downloadPDF}
@@ -75,15 +72,15 @@ export default function InvoicePreview({ shop, invoice }) {
         </button>
       )}
 
-      {/* INVOICE PREVIEW CONTAINER */}
+     
       <div className="group bg-gradient-to-br from-slate-900/95 via-slate-900/80 to-slate-950/90 backdrop-blur-3xl border border-slate-800/60 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-teal-500/20 hover:border-teal-500/50 transition-all duration-500 relative overflow-hidden">
-        {/* Decorative gradient bars */}
+       
         <div className="absolute top-4 right-4 w-2 h-24 bg-gradient-to-b from-teal-500/60 to-emerald-400/60 rounded-full shadow-lg blur-sm"></div>
         <div className="absolute bottom-4 left-4 w-2 h-20 bg-gradient-to-t from-blue-500/40 to-purple-400/40 rounded-full shadow-lg blur-sm"></div>
 
-        {/* INVOICE CONTENT */}
+    
         <div ref={invoiceRef} className="relative z-10">
-          {/* HEADER */}
+
           <div className="text-center mb-8 pb-8 border-b border-slate-800/50">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-emerald-500 rounded-3xl shadow-2xl flex items-center justify-center">
@@ -100,9 +97,9 @@ export default function InvoicePreview({ shop, invoice }) {
             <h2 className="text-2xl font-bold text-slate-200 uppercase tracking-[0.2em]">INVOICE</h2>
           </div>
 
-          {/* CUSTOMER & EVENT DETAILS */}
+         
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-            {/* Customer Info */}
+            
             <div className="space-y-3">
               <div className="flex items-start gap-3 p-4 bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl">
                 <div className="w-2 h-12 bg-gradient-to-b from-blue-500 to-blue-400 rounded-full shadow-lg mt-1 flex-shrink-0"></div>
@@ -115,7 +112,7 @@ export default function InvoicePreview({ shop, invoice }) {
               </div>
             </div>
 
-            {/* Event Info */}
+            
             <div className="space-y-3">
               <div className="flex items-start gap-3 p-4 bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl">
                 <div className="w-2 h-12 bg-gradient-to-b from-emerald-500 to-emerald-400 rounded-full shadow-lg mt-1 flex-shrink-0"></div>
@@ -129,7 +126,7 @@ export default function InvoicePreview({ shop, invoice }) {
             </div>
           </div>
 
-          {/* ITEMS TABLE */}
+      
           <div className="mb-10">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-2 h-10 bg-gradient-to-b from-orange-500 to-orange-400 rounded-full shadow-lg"></div>
@@ -163,7 +160,7 @@ export default function InvoicePreview({ shop, invoice }) {
             </div>
           </div>
 
-          {/* TOTALS SECTION */}
+         
           <div className="space-y-4 mb-8">
             <div className="grid grid-cols-2 text-right gap-4">
               <div>
@@ -183,7 +180,7 @@ export default function InvoicePreview({ shop, invoice }) {
             </div>
           </div>
 
-          {/* PAYMENT & WORDS */}
+        
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             <div className="p-6 bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl">
               <p className="text-slate-400 text-sm font-medium uppercase tracking-wide mb-3 flex items-center gap-2">
@@ -193,10 +190,10 @@ export default function InvoicePreview({ shop, invoice }) {
                 Payment Method
               </p>
               <p className="text-xl font-bold text-slate-100 capitalize">
-                {invoice.paymentMethod === "cash" && "💰 Cash"}
-                {invoice.paymentMethod === "upi" && "📱 UPI"}
-                {invoice.paymentMethod === "card" && "💳 Card"}
-                {invoice.paymentMethod === "bank" && "🏦 Bank Transfer"}
+                {invoice.paymentMethod === "cash" && "Cash"}
+                {invoice.paymentMethod === "upi" && "UPI"}
+                {invoice.paymentMethod === "card" && "Card"}
+                {invoice.paymentMethod === "bank" && "Bank Transfer"}
                 {!invoice.paymentMethod && "—"}
               </p>
             </div>
@@ -214,7 +211,7 @@ export default function InvoicePreview({ shop, invoice }) {
             </div>
           </div>
 
-          {/* NOTES */}
+ 
           {invoice.notes && (
             <div className="p-6 bg-gradient-to-r from-purple-500/10 to-blue-500/10 backdrop-blur-xl border border-purple-500/30 rounded-3xl shadow-xl">
               <p className="text-slate-300 text-sm font-medium uppercase tracking-wide mb-4 flex items-center gap-2">
@@ -224,7 +221,7 @@ export default function InvoicePreview({ shop, invoice }) {
             </div>
           )}
 
-          {/* FOOTER */}
+    
           <div className="pt-12 mt-12 border-t-4 border-gradient-to-r border-from-teal-500 border-to-emerald-500 border-opacity-50 text-center">
             <div className="w-24 h-1 bg-gradient-to-r from-slate-400 to-transparent rounded-full mx-auto mb-6 shadow-md"></div>
             <p className="text-slate-500 font-medium text-lg tracking-wide uppercase mb-2">Thank you for choosing us</p>

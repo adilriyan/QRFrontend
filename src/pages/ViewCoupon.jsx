@@ -17,16 +17,16 @@ export default function ViewCoupon() {
   });
   const [copied, setCopied] = useState(false);
 
-  // Backend base URL
+
   const backendBase = useMemo(() => {
     return (import.meta.env.VITE_API_BASE || "http://localhost:5000").replace("/api", "");
   }, []);
 
-  // Frontend Scan URL
+
   const frontendBase = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5173";
   const publicScanLink = template ? `${frontendBase}/scan/${template.templateCode}` : "";
 
-  // Fetch template
+
   useEffect(() => {
     API.get(`/coupons/template/${id}`)
       .then((res) => {
@@ -161,7 +161,7 @@ export default function ViewCoupon() {
 
   return (
     <div className="min-h-screen p-8 lg:p-12 space-y-12">
-      {/* PAGE HEADER */}
+ 
       <div className="flex items-start lg:items-center justify-between gap-6">
         <div>
           <h1 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-slate-100 via-teal-100 to-emerald-100 bg-clip-text text-transparent drop-shadow-2xl">
@@ -200,7 +200,7 @@ export default function ViewCoupon() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         
-        {/* LEFT: COUPON PREVIEW */}
+ 
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-4xl shadow-2xl shadow-slate-950/50 p-8 lg:p-12">
           <div className="text-center mb-10">
             <h3 className="text-2xl font-black text-slate-100 mb-2 uppercase tracking-[0.1em]">
@@ -218,8 +218,7 @@ export default function ViewCoupon() {
                   className="w-full h-auto rounded-2xl shadow-xl block mx-auto"
                 />
               </div>
-              
-              {/* QR Download */}
+        
               <div className="flex flex-wrap gap-3 justify-center mt-8">
                 <button
                   className="
@@ -256,10 +255,8 @@ export default function ViewCoupon() {
           )}
         </div>
 
-        {/* RIGHT: DETAILS & LINKS */}
         <div className="space-y-8">
           
-          {/* EXPIRY */}
           <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800/60 rounded-3xl p-8">
             <h3 className="text-xl font-black text-slate-100 mb-4 flex items-center gap-3">
               <div className="w-2 h-8 bg-gradient-to-b from-orange-400 to-orange-600 rounded-full"></div>
@@ -281,7 +278,7 @@ export default function ViewCoupon() {
             </div>
           </div>
 
-          {/* PUBLIC SCAN LINK */}
+      
           <div className="bg-slate-900/60 backdrop-blur-sm border border-slate-800/60 rounded-3xl p-8">
             <h3 className="text-xl font-black text-slate-100 mb-6 flex items-center gap-3">
               <FaExternalLinkAlt className="text-blue-400" />
@@ -331,7 +328,7 @@ export default function ViewCoupon() {
         </div>
       </div>
 
-      {/* UPDATE MODAL */}
+   
       {showModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-6">
           <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl shadow-slate-950/50 w-full max-w-lg p-8">

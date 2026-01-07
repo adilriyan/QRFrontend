@@ -31,7 +31,7 @@ export default function Navbar({ toggleSidebar }) {
         "
       >
         <div className="flex items-center gap-3">
-          {/* Toggle button visible on all sizes */}
+       
           <button
             className="
               inline-flex items-center justify-center h-9 w-9 rounded-full

@@ -32,12 +32,11 @@ function AnalyticsPage() {
       .catch(() => setLoading(false));
   }, [shopId]);
 
-  // COLORS for dark theme charts
   const CHART_COLORS = {
-    primary: "#10b981",      // emerald
-    secondary: "#3b82f6",    // blue
-    accent: "#f59e0b",       // amber
-    danger: "#ef4444",       // red
+    primary: "#10b981",      
+    secondary: "#3b82f6",    
+    accent: "#f59e0b",    
+    danger: "#ef4444",    
   };
 
   const PIE_COLORS = ["#10b981", "#3b82f6"];
@@ -47,7 +46,7 @@ function AnalyticsPage() {
     { name: "Redeems", value: stats.totalRedeems }
   ] : [];
 
-  // Skeleton Components
+
   const SkeletonCard = ({ className = "" }) => (
     <div className={`bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl p-8 animate-pulse ${className}`}>
       <div className="h-6 bg-slate-800/50 rounded-xl w-32 mb-4"></div>
@@ -58,7 +57,7 @@ function AnalyticsPage() {
   if (loading) {
     return (
       <div className="min-h-screen p-8 space-y-12">
-        {/* Header Skeleton */}
+     
         <div className="space-y-4">
           <div className="h-12 bg-slate-800/50 rounded-3xl w-80"></div>
           <div className="flex items-center gap-4">
@@ -67,12 +66,12 @@ function AnalyticsPage() {
           </div>
         </div>
 
-        {/* Stats Skeleton */}
+     
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[...Array(3)].map((_, i) => <SkeletonCard key={i} />)}
         </div>
 
-        {/* Charts Skeleton */}
+     
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl">
@@ -82,7 +81,7 @@ function AnalyticsPage() {
           ))}
         </div>
 
-        {/* Line Chart Skeleton */}
+      
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl">
           <div className="h-8 bg-slate-800/50 rounded-2xl w-72 mb-8"></div>
           <div className="h-80 bg-slate-800/30 rounded-3xl"></div>
@@ -121,7 +120,7 @@ function AnalyticsPage() {
 
   return (
     <div className="min-h-screen p-8 lg:px-12 lg:pb-12 space-y-12">
-      {/* HEADER */}
+    
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div>
           <h1 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-slate-100 via-teal-100 to-emerald-100 bg-clip-text text-transparent drop-shadow-2xl">
@@ -145,9 +144,9 @@ function AnalyticsPage() {
         </button>
       </div>
 
-      {/* SUMMARY CARDS */}
+  
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Total Templates */}
+      
         <div className="
           group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl 
           shadow-2xl shadow-slate-950/50 p-8 hover:shadow-emerald-500/30 hover:border-emerald-500/50
@@ -164,7 +163,7 @@ function AnalyticsPage() {
           <p className="text-4xl lg:text-5xl font-black text-slate-100">{stats.totalTemplates}</p>
         </div>
 
-        {/* Total Scans */}
+    
         <div className="
           group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl 
           shadow-2xl shadow-slate-950/50 p-8 hover:shadow-blue-500/30 hover:border-blue-500/50
@@ -181,7 +180,7 @@ function AnalyticsPage() {
           <p className="text-4xl lg:text-5xl font-black text-slate-100">{stats.totalScans}</p>
         </div>
 
-        {/* Total Redeems */}
+    
         <div className="
           group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl 
           shadow-2xl shadow-slate-950/50 p-8 hover:shadow-orange-500/30 hover:border-orange-500/50
@@ -199,10 +198,10 @@ function AnalyticsPage() {
         </div>
       </div>
 
-      {/* CHARTS SECTION */}
+    
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         
-        {/* Scans per Template - Bar Chart */}
+      
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl p-8">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-2xl font-black text-slate-100 flex items-center gap-3">
@@ -251,7 +250,7 @@ function AnalyticsPage() {
           </ResponsiveContainer>
         </div>
 
-        {/* Scan vs Redeem - Pie Chart */}
+       
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl p-8">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-2xl font-black text-slate-100 flex items-center gap-3">
@@ -287,7 +286,7 @@ function AnalyticsPage() {
         </div>
       </div>
 
-      {/* DAILY SCANS LINE CHART */}
+  
       <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl p-8">
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-2xl font-black text-slate-100 flex items-center gap-3">
@@ -333,7 +332,7 @@ function AnalyticsPage() {
         </ResponsiveContainer>
       </div>
 
-      {/* TEMPLATES TABLE */}
+
       <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl p-8">
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-2xl font-black text-slate-100 flex items-center gap-3">

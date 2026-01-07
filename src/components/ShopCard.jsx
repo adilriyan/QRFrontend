@@ -45,17 +45,17 @@ export default function ShopCard({ shop, onRefresh }) {
 
   return (
     <>
-      {/* ENHANCED SHOP CARD */}
+     
       <div className="
         group relative bg-slate-900/80 backdrop-blur-xl border border-slate-800/80
         rounded-3xl shadow-2xl shadow-slate-950/50 hover:shadow-teal-500/30
         hover:-translate-y-3 hover:scale-[1.02] transition-all duration-500
         overflow-hidden cursor-pointer
       ">
-        {/* Gradient Overlay */}
+     
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/0 via-teal-500/10 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-        {/* LOGO */}
+    
         <div className="relative z-10 p-6 pt-8">
           <div className="flex justify-center mb-6">
             <div className="relative">
@@ -75,17 +75,17 @@ export default function ShopCard({ shop, onRefresh }) {
             </div>
           </div>
 
-          {/* NAME */}
+
           <h3 className="text-xl md:text-2xl font-black text-slate-100 text-center tracking-tight mb-2 px-4">
             {shop.name}
           </h3>
 
-          {/* ADDRESS */}
+ 
           <p className="text-slate-400 text-sm text-center leading-relaxed px-4 mb-6">
             {shop.address || "Address not set"}
           </p>
 
-          {/* INFO ROWS */}
+ 
           <div className="space-y-2 mb-6 px-4">
             <div className="flex items-center justify-center gap-2 text-sm text-slate-300">
               <FaUser className="text-emerald-400 w-4 h-4" />
@@ -129,7 +129,7 @@ export default function ShopCard({ shop, onRefresh }) {
             </div>
           </div>
 
-          {/* ACTION BAR */}
+
           <div className="bg-slate-800/90 backdrop-blur-sm border-t border-slate-700/50 p-4 px-6 relative z-10">
             <div className="flex items-center justify-between">
               <button
@@ -171,7 +171,7 @@ export default function ShopCard({ shop, onRefresh }) {
           </div>
         </div>
 
-        {/* ENHANCED EDIT MODAL */}
+    
         {editOpen && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl shadow-slate-950/50 w-full max-w-md p-8">
@@ -258,7 +258,7 @@ export default function ShopCard({ shop, onRefresh }) {
           </div>
         )}
 
-        {/* DELETE MODAL */}
+    
         {deleteOpen && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <div className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl shadow-slate-950/50 w-full max-w-sm p-8">

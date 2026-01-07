@@ -27,19 +27,15 @@ export default function Dashboard() {
       });
   }, []);
 
-  // Loading UI
   if (loading) {
     return (
       <div className="space-y-8">
-        {/* Page Header Skeleton */}
         <div className="space-y-2">
           <div className="h-12 w-80 bg-slate-800/50 rounded-2xl animate-pulse"></div>
           <div className="h-4 w-64 bg-slate-800/30 rounded-xl animate-pulse"></div>
         </div>
 
-        {/* Summary Cards Skeleton */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Shop Card Skeleton */}
           <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl animate-pulse">
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 bg-slate-800/50 rounded-2xl"></div>
@@ -49,7 +45,6 @@ export default function Dashboard() {
             <div className="h-12 w-24 bg-slate-800/50 rounded-xl"></div>
           </div>
 
-          {/* Coupon Card Skeleton */}
           <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl animate-pulse">
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 bg-slate-800/50 rounded-2xl"></div>
@@ -59,7 +54,6 @@ export default function Dashboard() {
             <div className="h-12 w-24 bg-slate-800/50 rounded-xl"></div>
           </div>
 
-          {/* Scan Card Skeleton */}
           <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl animate-pulse">
             <div className="flex items-center justify-between mb-6">
               <div className="w-12 h-12 bg-slate-800/50 rounded-2xl"></div>
@@ -70,7 +64,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Chart Skeleton */}
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl">
           <div className="space-y-4 mb-8">
             <div className="h-8 w-72 bg-slate-800/50 rounded-xl"></div>
@@ -99,7 +92,6 @@ export default function Dashboard() {
     );
   }
 
-  // Error UI
   if (errorMsg) {
     return (
       <div className="flex flex-col justify-center items-center min-h-[60vh] space-y-4">
@@ -115,10 +107,8 @@ export default function Dashboard() {
     );
   }
 
-  // MAIN UI
   return (
     <div className="space-y-8">
-      {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent">
@@ -150,7 +140,6 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Total Coupons */}
         <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-emerald-500/20 hover:border-emerald-500/50 transition-all duration-300">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 rounded-2xl bg-emerald-500/20 border border-emerald-500/30">
@@ -168,7 +157,6 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Total Scans */}
         <div className="group bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50 hover:shadow-orange-500/20 hover:border-orange-500/50 transition-all duration-300">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 rounded-2xl bg-orange-500/20 border border-orange-500/30">
@@ -187,7 +175,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* DAILY SCANS CHART */}
       <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50">
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -203,7 +190,6 @@ export default function Dashboard() {
         <Chart data={dailyScans} />
       </div>
 
-      {/* FUTURE INSIGHTS */}
       <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl shadow-slate-950/50">
         <h2 className="text-2xl font-bold text-slate-100 mb-6">
            Coming Soon

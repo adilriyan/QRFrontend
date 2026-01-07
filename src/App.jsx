@@ -34,17 +34,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
       
-      {/* SIDEBAR */}
+ 
       {!isSpecialPage && (
         <Sidebar open={sidebarOpen} close={closeSidebar} />
       )}
 
-      {/* NAVBAR */}
+    
       {!isSpecialPage && (
         <Navbar toggleSidebar={toggleSidebar} />
       )}
 
-      {/* MAIN CONTENT */}
+  
       <main className={`
         min-h-screen
         transition-all duration-300

@@ -63,7 +63,7 @@ export default function AddCoupon() {
 
   return (
     <div className="space-y-8">
-      {/* Page Header */}
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-4xl font-black bg-gradient-to-r from-slate-100 to-slate-200 bg-clip-text text-transparent">
@@ -76,7 +76,7 @@ export default function AddCoupon() {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-        {/* LEFT: FORM */}
+ 
         <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-3xl shadow-2xl shadow-slate-950/50 p-8 xl:p-10">
           
           {errorMsg && (
@@ -86,7 +86,7 @@ export default function AddCoupon() {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-7">
-            {/* Shop Select */}
+          
             <div>
               <label className="block text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
                 Select Shop
@@ -116,7 +116,7 @@ export default function AddCoupon() {
               </div>
             </div>
 
-            {/* Title */}
+         
             <div>
               <label className="block text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
                 Coupon Title
@@ -136,7 +136,6 @@ export default function AddCoupon() {
               />
             </div>
 
-            {/* Description */}
             <div>
               <label className="block text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
                 Description
@@ -156,7 +155,7 @@ export default function AddCoupon() {
               />
             </div>
 
-            {/* Date & Days Row */}
+    
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
@@ -196,7 +195,7 @@ export default function AddCoupon() {
               </div>
             </div>
 
-            {/* Footer Text & Badge Row */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-slate-300 font-semibold mb-3 text-sm uppercase tracking-wide">
@@ -241,7 +240,7 @@ export default function AddCoupon() {
               </div>
             </div>
 
-            {/* Theme Selector */}
+          
             <div>
               <label className="block text-slate-300 font-semibold mb-5 text-sm uppercase tracking-wide">
                 Coupon Theme
@@ -276,7 +275,7 @@ export default function AddCoupon() {
               </div>
             </div>
 
-            {/* Submit Button */}
+          
             <button
               type="submit"
               disabled={loading}
@@ -300,7 +299,7 @@ export default function AddCoupon() {
           </form>
         </div>
 
-        {/* RIGHT: LIVE PREVIEW */}
+      
         <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-3xl shadow-2xl shadow-slate-950/30 p-8 flex items-start justify-center min-h-[600px]">
           <div className="w-full max-w-sm">
             <div className="text-center mb-6">
